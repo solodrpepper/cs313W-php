@@ -1,4 +1,7 @@
 <?php
+// set default timezone
+date_default_timezone_set('America/Boise'); // CDT
+
 $info = getdate();
 $date = $info['mday'];
 $month = $info['mon'];
