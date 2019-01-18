@@ -158,7 +158,7 @@
         to live with Him again.
       </p>
       <?php
-        $current_date = date('d/m/Y == H:i:s');
+        $current_date = getdate('d/m/Y == H:i:s');
         echo "<p>$current_dat</p>";
       ?>
     </div>
