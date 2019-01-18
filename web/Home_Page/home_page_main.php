@@ -11,7 +11,7 @@ $min = $info['minutes'];
 $sec = $info['seconds'];
 
 $timestamp = time();
-$date_time = date("Y-M-d, D h:i", $timestamp);
+$date_time = date("D, M d, Y, h:i", $timestamp);
 
 //$current_date = "$date/$month/$year == $hour:$min:$sec";
 ?>
