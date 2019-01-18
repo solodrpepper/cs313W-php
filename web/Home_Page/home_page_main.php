@@ -157,6 +157,10 @@
         become a more obedient and more devoted disciple of Christ and one hope
         to live with Him again.
       </p>
+      <?php
+        $current_date = date('d/m/Y == H:i:s');
+        echo '$current_date';
+      ?>
     </div>
   </body>
 </html>
