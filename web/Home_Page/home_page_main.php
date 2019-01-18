@@ -10,7 +10,10 @@ $hour = $info['hours'];
 $min = $info['minutes'];
 $sec = $info['seconds'];
 
-$current_date = "$date/$month/$year == $hour:$min:$sec";
+$timestamp = time();
+$date_time = date("d-m-Y (D) H:i:s", $timestamp);
+
+//$current_date = "$date/$month/$year == $hour:$min:$sec";
 ?>
 
 <!DOCTYPE html>
