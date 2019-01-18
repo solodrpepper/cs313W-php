@@ -159,7 +159,7 @@
       </p>
       <?php
         $current_date = date('d/m/Y == H:i:s');
-        echo "$current_dat";
+        echo "<p>$current_dat</p>";
       ?>
     </div>
   </body>
