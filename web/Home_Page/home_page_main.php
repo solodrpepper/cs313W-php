@@ -176,7 +176,7 @@ $date_time = date("d-m-Y (D) H:i:s", $timestamp);
         to live with Him again.
       </p>
       <?php
-        echo "<p>$current_date</p>";
+        echo "<p>$$date_time</p>";
       ?>
     </div>
   </body>
