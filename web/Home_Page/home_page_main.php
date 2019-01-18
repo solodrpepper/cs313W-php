@@ -162,7 +162,7 @@ $current_date = getdate('d/m/Y == H:i:s');
         to live with Him again.
       </p>
       <?php
-        echo "<p>$current_dat</p>";
+        echo "<p>$current_date</p>";
       ?>
     </div>
   </body>
