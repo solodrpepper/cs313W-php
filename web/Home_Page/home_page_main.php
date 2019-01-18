@@ -11,7 +11,7 @@ $min = $info['minutes'];
 $sec = $info['seconds'];
 
 $timestamp = time();
-$date_time = date("d-m-Y (D) H:i:s", $timestamp);
+$date_time = date("Y-M-d, D h:i", $timestamp);
 
 //$current_date = "$date/$month/$year == $hour:$min:$sec";
 ?>
@@ -176,7 +176,7 @@ $date_time = date("d-m-Y (D) H:i:s", $timestamp);
         to live with Him again.
       </p>
       <?php
-        echo "<p>$$date_time</p>";
+        echo "<p>$date_time</p>";
       ?>
     </div>
   </body>
