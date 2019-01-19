@@ -56,6 +56,10 @@ $str = json_encode($directory);
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link
+        rel="stylesheet"
+        href="home_page.css"
+    />
     <!-- Javascript -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
