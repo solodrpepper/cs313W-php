@@ -5,7 +5,7 @@ header {
 	font-family: "Courier New";
 	font-weight: bold;
     padding: 8px;
-    background-image: linear-gradient(110deg, #5FB627 0%, #4CB126 51%, #32A925 75%);
+    background-image: linear-gradient(110deg, #C8783D 0%, #CD844E 51%, #D29060 75%);
 	background-color: #555; /* in case can't render gradient */
 	color: white;
 	overflow: none;
@@ -15,20 +15,26 @@ header {
 	border-radius: 5px;
 }
 
-.button {
-	background-color: #C32A42;
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-right: 10px;
+.navbar-brand {
+    color: #243753;
+    font-size: 2em
 }
 
+/* BUTTON STYLES */
+
+/* inactive button */
+.button {
+	color: #374962;
+}
+
+/* hover button */
 .button:hover {
-	background-color: #9E152B;
+	color: #243753;
+}
+
+/* active button */
+.active {
+    color: #21324C;
 }
 
 .label {
