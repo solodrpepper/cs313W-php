@@ -74,14 +74,14 @@ $str = json_encode($directory);
     ></script>
     <!-- Getting the JSON -->
     <script type="text/javascript">
-        var php_var = "<?php echo $php_var; ?>";
+        var directory = <?php echo json_encode($str); ?>;
         
 
 
         // this is for the JSON stuff
 		function processJSON()
 		{
-            var myObj = JSON.parse(php_var);
+            var myObj = JSON.parse(directory);
             var list = "<table><tr><th>Filename</th><th>Type</th><th>CWD</th><th>Action</th></tr>\n";
 
             for (var i = 0; i < myObj.length; i++)
