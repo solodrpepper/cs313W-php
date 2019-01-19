@@ -27,8 +27,8 @@ $file = pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
-          <li class="nav-item <?php if ($file === 'github') echo 'active' ?>"><a class="nav-link" href="https://github.com/solodrpepper">About Me</a></li>
-          <li class="nav-item <?php if ($file === 'cs313_assign_page') echo 'active' ?>"><a class="nav-link" href="#">GitHub</a></li>
+          <li class="nav-item <?php if ($file === 'github') echo 'active' ?>"><a class="nav-link" href="https://github.com/solodrpepper">GitHub</a></li>
+          <li class="nav-item <?php if ($file === 'cs313_assign_page') echo 'active' ?>"><a class="nav-link" href="cs313_assign_page.php">CS313</a></li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input
