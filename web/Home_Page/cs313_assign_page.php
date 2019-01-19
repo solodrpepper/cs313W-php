@@ -9,7 +9,7 @@ class fileN
 }
 
 $cwd = getcwd(); // get path to the current working directory
-$folder = "."; // Set the folder variable to specify the "current" directory
+$folder = ".."; // Set the folder variable to specify the "current" directory
 
 // create an array of filenames of files from the current directory
 $files = scandir($folder);
@@ -84,12 +84,14 @@ $str = json_encode($directory);
 		function processJSON()
 		{
             var myObj = JSON.parse(directory);
+            var target_location = myObj.fileName;
+
             var list = "<table><tr><th>Project Name</th></tr>\n";
 
-            for (var i = 0; i < myObj.length; i++)
+            for (var i = 2; i < myObj.length; i++)
             {
                 list = list + "<tr><td>" + myObj[i].fileName + "</td>" +
-                              "<td><button class=\"button rounded_border\" onclick='window.location=`" + myObj[i].fileName + '/home.php' "`' >Visit</button>" + "</td></tr>\n";
+                              "<td><button class=\"button rounded_border\" onclick='window.location=`" + myObj[i].fileName + target_location[i] + "`' >Visit</button>" + "</td></tr>\n";
             }
             document.getElementById("directory").innerHTML = list;
 		}
