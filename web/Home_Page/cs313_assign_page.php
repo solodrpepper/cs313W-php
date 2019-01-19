@@ -41,7 +41,6 @@ for ($i = 0; $i < sizeof($files); $i++) {
 
 // convert the PHP array of objects to a JSON string
 $str = json_encode($directory);
-print "\n $str \n"; //output the json string - The string is sent to the browser.
 ?>
 
 
@@ -80,51 +79,21 @@ print "\n $str \n"; //output the json string - The string is sent to the browser
         // this is for the JSON stuff
 		function processJSON()
 		{
-			if (req.readyState == 4)
-			{
-				 if (req.status == 200)
-				 {
-					var myObj = JSON.parse(req.responseText);
-					var list = "<table><tr><th>Filename</th><th>Type</th><th>CWD</th><th>Action</th></tr>\n";
+            var myObj = JSON.parse('$str');
+            var list = "<table><tr><th>Filename</th><th>Type</th><th>CWD</th><th>Action</th></tr>\n";
 
-					for (var i = 0; i < myObj.length; i++)
-					{
-						 list  = list + "<tr><td>" + myObj[i].fileName + "</td>" +
-											 "<td>" + myObj[i].fileType     + "</td>" +
-											 "<td>" + myObj[i].cwd          + "</td>" +
-											 "<td><button class=\"button rounded_border\" onclick='window.location=`" + "/~solodrpepper/assign09/" + myObj[i].fileName + "`' >click to display</botton>" + "</td></tr>\n";
-					}
-					document.getElementById("directory").innerHTML = list;
-					}
-				else
-				{
-					alert("There was a problem retrieving the text file:\n" + req.statusText);
-				}
-			}
+            for (var i = 0; i < myObj.length; i++)
+            {
+                    list  = list + "<tr><td>" + myObj[i].fileName + "</td>" +
+                                        "<td>" + myObj[i].fileType     + "</td>" +
+                                        "<td>" + myObj[i].cwd          + "</td>" +
+                                        "<td><button class=\"button rounded_border\" onclick='window.location=`" + "/~solodrpepper/assign09/" + myObj[i].fileName + "`' >click to display</botton>" + "</td></tr>\n";
+            }
+            document.getElementById("directory").innerHTML = list;
 		}
-
-
-		function loadXMLJson() {
-			req = new XMLHttpRequest();
-			if (req != null) {
-				req.onreadystatechange = processJSON;
-				req.open("GET", "assign09.php", true);
-				req.send(null);
-			} else {
-				alert("Brower doesn't support XMLHttp");
-			}
-		}
-
 	</script>
-
-    <style>
-      .carousel-inner img {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
 </head>
-<body onload="loadXMLJson()">
+<body onload="processJSON()">
 <header>My Projects</header>
 <!-- For Navbar -->
 <?php
