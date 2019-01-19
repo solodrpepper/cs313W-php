@@ -22,13 +22,13 @@ $file = pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="#">Austin Kincade</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item <?php if ($file === 'home_page_main') echo 'active' ?>">
-            <a class="nav-link" href="home_page_main.php"
+          <li class="nav-item nav-button <?php if ($file === 'home') echo 'active' ?>">
+            <a class="nav-link" href="home.php"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
-          <li class="nav-item <?php if ($file === 'github') echo 'active' ?>"><a class="nav-link" href="https://github.com/solodrpepper">GitHub</a></li>
-          <li class="nav-item <?php if ($file === 'cs313_assign_page') echo 'active' ?>"><a class="nav-link" href="cs313_assign_page.php">CS313</a></li>
+          <li class="nav-item nav-button <?php if ($file === 'github') echo 'active' ?>"><a class="nav-link" href="https://github.com/solodrpepper">GitHub</a></li>
+          <li class="nav-item nav-button <?php if ($file === 'cs313_assign_page') echo 'active' ?>"><a class="nav-link" href="cs313_assign_page.php">CS313</a></li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input

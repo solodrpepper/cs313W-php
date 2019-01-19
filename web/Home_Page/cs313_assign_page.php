@@ -80,20 +80,16 @@ $str = json_encode($directory);
     <script type="text/javascript">
         var directory = <?php echo json_encode($str); ?>;
         
-
-
         // this is for the JSON stuff
 		function processJSON()
 		{
             var myObj = JSON.parse(directory);
-            var list = "<table><tr><th>Filename</th><th>Type</th><th>CWD</th><th>Action</th></tr>\n";
+            var list = "<table><tr><th>Project Name</th></tr>\n";
 
             for (var i = 0; i < myObj.length; i++)
             {
-                list = list + "<tr><td>" + myObj[i].fileName     + "</td>" +
-                                  "<td>" + myObj[i].fileType     + "</td>" +
-                                  "<td>" + myObj[i].cwd          + "</td>" +
-                                  "<td><button class=\"button rounded_border\" onclick='window.location=`" + "/~solodrpepper/assign09/" + myObj[i].fileName + "`' >click to display</botton>" + "</td></tr>\n";
+                list = list + "<tr><td>" + myObj[i].fileName + "</td>" +
+                              "<td><button class=\"button rounded_border\" onclick='window.location=`" + myObj[i].fileName + '/home.php' "`' >Visit</button>" + "</td></tr>\n";
             }
             document.getElementById("directory").innerHTML = list;
 		}
