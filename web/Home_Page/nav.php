@@ -23,7 +23,7 @@ $file = pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
         <a class="navbar-brand" href="#">Austin Kincade</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item <?php if ($file === 'home_page_main') echo 'active' ?>">
-            <a class="nav-link" href="#"
+            <a class="nav-link" href="home_page_main.php"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
