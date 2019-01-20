@@ -91,8 +91,10 @@ $str = json_encode($directory);
             {
                 list = list + "<tr><td>" + myObj[i].fileName + "</td>" +
                               "<td><button class=\"button rounded_border\" onclick='window.location=`" + myObj[i].fileName + target_location + "`' >Visit</button>" + "</td></tr>\n";
+
+                document.getElementById("directory").innerHTML += myObj[i].fileName;
             }
-            document.getElementById("directory").innerHTML = list;
+            document.getElementById("directory").innerHTML += list;
 		}
 	</script>
 </head>
