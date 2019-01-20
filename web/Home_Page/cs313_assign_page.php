@@ -91,7 +91,7 @@ $str = json_encode($directory);
             for (var i = 3; i < myObj.length - 1; i++)
             {
                 // for the destination variable
-                target_location = myObj[i].fileName + file_location;
+                target_location = "https://morning-citadel-97793.herokuapp.com/" + myObj[i].fileName + file_location;
 
                 list = list + "<tr><td>" + myObj[i].fileName + "</td>" +
                               "<td><button class=\"button rounded_border\" onclick='window.location=`" + target_location + "`' >Visit</button>" + "</td></tr>\n";
