@@ -1,3 +1,3 @@
 <?php 
-// hello there
+header('Location: https://morning-citadel-97793.herokuapp.com/Home_Page/browse.php');
 ?>
