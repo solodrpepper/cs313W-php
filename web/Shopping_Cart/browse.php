@@ -9,7 +9,33 @@ $in_cart = array();
 if (!isset($_SESSION['in_cart'])) {
     $_SESSION['in_cart'] = $in_cart;
 }
-require_once "products.php";
+
+// create a product object
+class product
+{
+    public $name;
+    public $price;
+    public $id;
+    public $image_path;
+    public $type;
+}
+
+$product_array = array();
+
+$color_array = array(Red, Blue, Green, Teal);
+$lightsaber_image_path_array = array("photos/red-lightsaber.png",
+                                     "photos/blue-lightsaber.png",
+                                     "photos/green-lightsaber",
+                                     "photos/teal-lightsaber");
+
+for ($i = 0; $i < sizeof($color_array); $i++) {
+    $product_array[$i]             = new product();
+    $product_array[$i]->name       = $color_array[$i] . " Lightsaber";
+    $product_array[$i]->price      = 100000000;
+    $product_array[$i]->id         = $i;
+    $product_array[$i]->image_path = $lightsaber_image_path_array[$i];
+    $product_array[$i]->type       = "lightsaber";
+}
 
 ?>
 
@@ -69,19 +95,19 @@ require "nav.php";
                 if (!($i % 2 == 0)) {
                     echo "
                         <div class='col-sm br-product'>
-                            <img src="$product_array[$i]->image_path" alt="$name">
+                            <img src='$product_array[$i]->image_path' alt='$name'>
                             <h2 class='product-name'>$name</h2>
                             <span>$$price</span>
-                            <a href='modify_cart.php?action=addToCart&itemId="$id"' class='btn btn-primary addToCart'>Add to Cart</a>
+                            <a href='modify_cart.php?action=addToCart&itemId='$id'' class='btn btn-primary addToCart'>Add to Cart</a>
                         </div></div>";
                 } else { 
                     echo "<div class='row'>";
                     echo "
                         <div class='col-sm br-product'>
-                            <img src="$product_array[$i]->image_path" alt="$name">
+                            <img src='$product_array[$i]->image_path' alt='$name'>
                             <h2 class='product-name'>$name</h2>
                             <span>$$price</span>
-                            <a href='modify_cart.php?action=addToCart&itemId="$id"' class='btn btn-primary addToCart'>Add to Cart</a>
+                            <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
                         </div>";
                 }
             }
