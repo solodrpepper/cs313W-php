@@ -37,7 +37,7 @@ if (isset($_SESSION['in_cart'])) {
             <ul class="nav navbar-nav"> 
                 <li>
                     <button type="button" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Cart
+                        <span class="glyphicon glyphicon-shopping-cart"> Cart</span>
                         <span><?php if ($sizeof_cart > 0) { echo " ($sizeof_cart)"; }?></span>
                     </button>
                 </li>
