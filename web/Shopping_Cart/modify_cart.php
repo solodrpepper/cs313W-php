@@ -7,4 +7,6 @@
     if ($_GET['action'] == "addToCart") {
         $_SESSION['in_cart'].array_push($_GET['action']);
     }
+
+    echo $_SESSION['in_cart'];
 ?>
