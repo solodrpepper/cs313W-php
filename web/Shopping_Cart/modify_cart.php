@@ -5,7 +5,7 @@
     require_once "products.php";
 
     if ($_GET['action'] == "addToCart") {
-        $_SESSION['in_cart'].array_push($_GET['action']);
+        $_SESSION['in_cart'].array_push($_GET['itemId']);
     }
 
     echo $_SESSION['in_cart'];
