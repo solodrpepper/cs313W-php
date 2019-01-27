@@ -25,8 +25,8 @@ $product_array = array();
 $color_array = array(Red, Blue, Green, Teal);
 $lightsaber_image_path_array = array("photos/red-lightsaber.png",
                                      "photos/blue-lightsaber.png",
-                                     "photos/green-lightsaber",
-                                     "photos/teal-lightsaber");
+                                     "photos/green-lightsaber.png",
+                                     "photos/teal-lightsaber.png");
 
 for ($i = 0; $i < sizeof($color_array); $i++) {
     $product_array[$i]             = new product();
