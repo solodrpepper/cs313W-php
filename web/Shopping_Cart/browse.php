@@ -103,7 +103,7 @@ require "nav.php";
                         <div class='col-sm br-product'>
                             <img src='$image_path' alt='$name'>
                             <h2 class='product-name'>$name</h2>
-                            <span>$'$price'</span>
+                            <span>$$price</span>
                             <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
                         </div>";
                 } else { 
@@ -112,7 +112,7 @@ require "nav.php";
                         <div class='col-sm br-product'>
                             <img src='$image_path' alt='$name'>
                             <h2 class='product-name'>$name</h2>
-                            <span>$'$price'</span>
+                            <span>$$price</span>
                             <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
                         </div>";
                 }
