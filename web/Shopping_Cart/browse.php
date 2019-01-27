@@ -47,7 +47,7 @@ for ($i = 0; $i < sizeof($color_array); $i++) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>THe Shady Cantina</title>
+    <title>The Shady Cantina</title>
 
     <!-- CSS -->
 <link 
@@ -94,10 +94,11 @@ require "nav.php";
         <div class="container products">
         <?php
             for ($i = 0; $i < sizeof($product_array); $i++) {
-                $name       = $product_array[$i]->name;
-                $price      = $product_array[$i]->price;      
-                $id         = $product_array[$i]->id;     
-                $image_path = $product_array[$i]->image_path;      
+                $obj        = $product_array[$i];
+                $name       = $obj->name;
+                $price      = $obj->price;      
+                $id         = $obj->id;     
+                $image_path = $obj->image_path;      
 
 
                 if (!($i % 2 == 0)) {
@@ -115,7 +116,7 @@ require "nav.php";
                             <img src='$image_path' alt='$name'>
                             <h2 class='product-name'>$name</h2>
                             <span>$$price</span>
-                            <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
+                            <a href='modify_cart.php?action=addToCart&itemId=$obj' class='btn btn-primary addToCart'>Add to Cart</a>
                         </div>";
                 }
             }
