@@ -32,6 +32,7 @@ for ($i = 0; $i < sizeof($color_array); $i++) {
     $product_array[$i]             = new product();
     $product_array[$i]->name       = $color_array[$i] . " Lightsaber";
     $temp = 10000.00 * (1 + $i);
+    $temp = number_format($temp, 2, ".", ",");
     $product_array[$i]->price      = $temp;
     $product_array[$i]->id         = $i;
     $product_array[$i]->image_path = $lightsaber_image_path_array[$i];
