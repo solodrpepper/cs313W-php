@@ -55,10 +55,10 @@ for ($i = 0; $i < sizeof($color_array); $i++) {
     crossorigin="anonymous"
 />
 
-<!-- <link
+<link
     rel="stylesheet"
     href="main.css"
-/> -->
+/>
 
 <!-- JavaScript -->
 <script 
