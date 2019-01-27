@@ -31,7 +31,8 @@ $lightsaber_image_path_array = array("photos/red-lightsaber.png",
 for ($i = 0; $i < sizeof($color_array); $i++) {
     $product_array[$i]             = new product();
     $product_array[$i]->name       = $color_array[$i] . " Lightsaber";
-    $product_array[$i]->price      = number_format((1000000.00 * [$i + 1]),2,"."," ");
+    $temp                          = number_format((1000000.00 * [$i + 1]),2,".",",");
+    $product_array[$i]->price      = $temp;
     $product_array[$i]->id         = $i;
     $product_array[$i]->image_path = $lightsaber_image_path_array[$i];
     $product_array[$i]->type       = "lightsaber";
@@ -45,7 +46,7 @@ for ($i = 0; $i < sizeof($color_array); $i++) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>THe Shady Cantina</title>
 
     <!-- CSS -->
 <link 
