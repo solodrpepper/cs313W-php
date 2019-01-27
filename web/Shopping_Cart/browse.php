@@ -4,7 +4,13 @@
 // Start a session
 session_start();
 
+// make sure cart is filled if there is anything in it
+$in_cart = array();
+if (!isset($_SESSION['in_cart'])) {
+    $_SESSION['in_cart'] = $in_cart;
+}
 require_once "products.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -52,5 +58,36 @@ require_once "products.php";
 // page is not available, we want the page to crash.
 require "nav.php";
 ?>
+
+<!-- We need to put in the products -->
+<div class="container-fluid">
+        <h1>Begin Your Journey...</h1>
+
+        <div class="container products">
+        <?php
+            for ($i = 0; $i < sizeof($product_array); $i++) {
+                if (!($i % 2 == 0)) {
+                    echo "
+                        <div class='col-sm br-product'>
+                            <img src="$product_array[$i]->image_path" alt="$name">
+                            <h2 class='product-name'>$name</h2>
+                            <span>$$price</span>
+                            <a href='modify_cart.php?action=addToCart&itemId="$id"' class='btn btn-primary addToCart'>Add to Cart</a>
+                        </div></div>";
+                } else { 
+                    echo "<div class='row'>";
+                    echo "
+                        <div class='col-sm br-product'>
+                            <img src="$product_array[$i]->image_path" alt="$name">
+                            <h2 class='product-name'>$name</h2>
+                            <span>$$price</span>
+                            <a href='modify_cart.php?action=addToCart&itemId="$id"' class='btn btn-primary addToCart'>Add to Cart</a>
+                        </div>";
+                }
+            }
+                
+        ?>
+    </div>
+</div>
 </body>
 </html>
