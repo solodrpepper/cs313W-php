@@ -1,3 +1,109 @@
-
-
+/* ----------------------------------------------------- */
+/* --------- Common ----------- */
+/* ----------------------------------------------------- */
+body {
+    font-family: sans-serif;
+    font-size: 1.2em;
+    background-color: #e6e5e5;
+    text-align: center; }
+  
+  h1, h2, h3, h4 {
+    font-family: 'Abril Fatface', monospace;
+    color: #EFCB00; }
+    h1 h1, h2 h1, h3 h1, h4 h1 {
+      font-size: 3em; }
+  
+  .navbar {
+    background-color: #393d3f; }
+    .navbar .navbar-brand {
+      color: white; }
+    .navbar .nav-link {
+      color: #ffffff; }
+    .navbar .navbar-toggler {
+      background-color: #fff; }
+  
+  .nav-pill {
+    height: 25px;
+    width: 30px; }
+  
+  .nav-pill, .check-pill {
+    background-color: #5eb9ff; }
+  
+  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    border-color: #5eb9ff;
+    background-color: #5eb9ff !important; }
+  
+  /* ----------------------------------------------------- */
+  /* --------- Browse ----------- */
+  /* ----------------------------------------------------- */
+  #browse h1 {
+    font-size: 5em; }
+  #browse .products {
+    padding: 0;
+    margin-top: 3em; }
+  
+  .br-product {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px; }
+    .br-product img {
+      width: 300px;
+      height: 300px; }
+    .br-product h2 {
+      font-size: 1.5em; }
+    .br-product .btn {
+      width: 100%;
+      margin-top: 10px; }
+  
+  .product-name {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #5eb9ff; }
+  
+  /* ----------------------------------------------------- */
+  /* --------- View Cart ----------- */
+  /* ----------------------------------------------------- */
+  #view {
+    text-align: left; }
+    #view h1 {
+      font-size: 5em; }
+    #view .updates {
+      display: flex; }
+      #view .updates p {
+        padding-right: 30px; }
+    #view .btn-delete {
+      margin-bottom: 20px; }
+    #view .justify {
+      float: right; }
+  
+  /* ----------------------------------------------------- */
+  /* --------- Checkout ----------- */
+  /* ----------------------------------------------------- */
+  h2, h3, h4 {
+    color: black; }
+  
+  #checkout {
+    text-align: left; }
+    #checkout h1 {
+      font-size: 5em;
+      text-align: center; }
+  
+  .your-cart {
+    display: flex;
+    justify-content: space-between; }
+    .your-cart span {
+      height: 25px;
+      width: 30px; }
+  
+  .ship-free {
+    color: green; }
+  
+  /* ----------------------------------------------------- */
+  /* --------- Confirmation ----------- */
+  /* ----------------------------------------------------- */
+  .img-list {
+    width: 120px;
+    height: auto; }
+  
 /*# sourceMappingURL=main.css.map */
