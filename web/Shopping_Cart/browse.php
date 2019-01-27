@@ -92,23 +92,29 @@ require "nav.php";
         <div class="container products">
         <?php
             for ($i = 0; $i < sizeof($product_array); $i++) {
+                $name       = $product_array[$i]->name;
+                $price      = $product_array[$i]->price;      
+                $id         = $product_array[$i]->id;     
+                $image_path = $product_array[$i]->image_path;      
+
+
                 if (!($i % 2 == 0)) {
                     echo "
                         <div class='col-sm br-product'>
-                            <img src='$product_array[$i]->image_path' alt='$name'>
+                            <img src='$image_path' alt='$name'>
                             <h2 class='product-name'>$name</h2>
-                            <span>$$price</span>
-                            <a href='modify_cart.php?action=addToCart&itemId='$id'' class='btn btn-primary addToCart'>Add to Cart</a>
+                            <span>$'$price'</span>
+                            <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
                         </div></div>";
                 } else { 
                     echo "<div class='row'>";
                     echo "
                         <div class='col-sm br-product'>
-                            <img src='$product_array[$i]->image_path' alt='$name'>
+                            <img src='$image_path' alt='$name'>
                             <h2 class='product-name'>$name</h2>
-                            <span>$$price</span>
+                            <span>$'$price'</span>
                             <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
-                        </div>";
+                        </div></div>";
                 }
             }
                 
