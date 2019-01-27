@@ -105,7 +105,7 @@ require "nav.php";
                             <h2 class='product-name'>$name</h2>
                             <span>$'$price'</span>
                             <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
-                        </div></div>";
+                        </div>";
                 } else { 
                     echo "<div class='row'>";
                     echo "
@@ -114,7 +114,7 @@ require "nav.php";
                             <h2 class='product-name'>$name</h2>
                             <span>$'$price'</span>
                             <a href='modify_cart.php?action=addToCart&itemId=$id' class='btn btn-primary addToCart'>Add to Cart</a>
-                        </div></div>";
+                        </div>";
                 }
             }
                 
