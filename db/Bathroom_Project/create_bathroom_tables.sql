@@ -3,8 +3,7 @@ CREATE TABLE users (
    , fname     VARCHAR(12) NOT NULL
    , lname     VARCHAR(15) NOT NULL
    , email     VARCHAR(64) NOT NULL
-   , hash      VARCHAR(64) NOT NULL
-   , salt      VARCHAR(64) NOT NULL
+   , hash      VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE buildings (
