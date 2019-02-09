@@ -12,18 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pword = $_POST['hash_ed'];
 
     if ($db) {
-        $SQL = $db->prepare('SELECT  FROM login WHERE email = ?');
-        $SQL->bind_param('s', $uname);
-        $SQL->execute();
-        $result = $SQL->get_result();
+        $statement = $db->prepare('SELECT  FROM login WHERE email = ?');
+        $statement->bind_param('s', $uname);
+        $statement->execute();
+        $result = $statement->get_result();
 
         if ($result->num_rows > 0) {
             $errorMessage = "Username already taken";
         } else {
             $phash = password_hash($pword, PASSWORD_DEFAULT);
-            $SQL = $db_found->prepare("INSERT INTO users (email, hash_ed) VALUES (?, ?)");
-            $SQL->bind_param('ss', $uname, $phash);
-            $SQL->execute();
+            $statement = $db_found->prepare("INSERT INTO users (email, hash_ed) VALUES (?, ?)");
+            $statement->bind_param('ss', $uname, $phash);
+            $statement->execute();
 
             header("Location: login.php");
         }
@@ -33,8 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rate My Loo - Sign Up</title>
 </head>
 <body>
