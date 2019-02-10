@@ -42,7 +42,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
             <a class="nav-link" href="aboutRML.php">About RML</a>
          </li>
       </ul>
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 navbar-right">
+      <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
          <?php
             if ($isLoggedIn == 0) {
                echo "$notLoggedIn";
