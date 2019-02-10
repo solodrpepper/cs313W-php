@@ -16,12 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statement = $db->prepare("SELECT email, username, hash_ed FROM users WHERE email = :email");
     $statement->bindParam(':email', $email, PARAM_STR);
 
-    if ($statement->execute()) { 
-        echo "It worked!!<br>";
-    } else {
-        echo "It broke.. :(<br>";
+    try {
+        if ($statement->execute()) {
+            echo "It worked!!<br>";
+        } else {
+            echo "It broke.. :(<br>";
+        }
     }
-
+    catch (PDOException $ex) {
+        echo 'Error!: ' . $ex->getMessage();
+        die();
+    }
     echo "are we getting here (after the execute)?<br>";
 
     $result = $statement->get_result();
