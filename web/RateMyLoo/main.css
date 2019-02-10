@@ -10,8 +10,9 @@
 }
 .jumbotron .container {
   background-color: white;
-  opacity: 0.75;
-  border-radius: 3px;
+  overflow: hidden;
+  opacity: 0.8;
+  border-radius: 4px;
 }
 
 /*# sourceMappingURL=main.css.map */
