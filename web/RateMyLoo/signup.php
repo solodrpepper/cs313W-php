@@ -29,18 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "are we getting here (after the execute)?<br>";
 
-    $result = $statement->get_result();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if ($result->num_rows > 0) {
+    if ($result['email'] == $email) {
         $errorMessage = "Email already used";
     } else {
         // check to see if username is used
         $statement = $db->prepare("SELECT username FROM users WHERE username = :username");
         $statement->bindParam(':username', $uname);
         $statement->execute();
-        $result = $statement->get_result();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($result->num_rows > 0) {
+        if ($result['username'] == $uname) {
             $errorMessage = "Sorry, that username is already taken :(";
         } else {
             $phash = password_hash($pword, PASSWORD_DEFAULT);
