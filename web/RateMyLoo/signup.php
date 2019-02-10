@@ -1,4 +1,9 @@
 <!-- Found on online tutorial -->
+<!-- I write this new comment hours after I wrote the above comment... and
+     now would like to say that I have done so much modifying that what is
+     below is mostly edited now, they did, however, provide me with an
+     amazing foundation and outline
+-->
 <?php
 $uname = "";
 $email = "";
@@ -22,12 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo "It broke.. :(<br>";
         }
-    }
-    catch (PDOException $ex) {
+    } catch (PDOException $ex) {
         echo 'Error!: ' . $ex->getMessage();
         die();
     }
-    echo "are we getting here (after the execute)?<br>";
 
     $result = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -65,6 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
 
     <!-- My CSS -->
