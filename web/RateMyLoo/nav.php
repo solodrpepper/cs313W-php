@@ -5,7 +5,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
    $isLoggedIn = 0;
 } else {
    $isLoggedIn = 1;
-   $uname = $_SESSION['uname'];
+   //$uname = $_SESSION['uname'];
 }
 
 require 'db_connect.php';
