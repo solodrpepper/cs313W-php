@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php require 'nav.php';?>
     <div class="container">
         <aside class="col-sm-4">
-            <div class="card">
+            <div class="card login_form">
                 <article class="card-body">
                     <a href="" class="float-right btn btn-outline-primary">Sign up</a>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
