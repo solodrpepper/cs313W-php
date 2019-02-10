@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $pword = $_POST['hash_ed'];
 
+    echo 'are we getting here?';
     if ($db) {
         $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = ?');
         $statement->bindParam('s', $email);
