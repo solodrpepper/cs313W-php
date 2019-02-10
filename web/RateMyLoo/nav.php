@@ -7,14 +7,17 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
    $isLoggedIn = 1;
    $uname = $_SESSION['uname'];
 }
+
+$file = pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
+
 ?>
 
 <!-- HTML to display if user is not logged in -->
 <?php ob_start(); ?>
 <li class="nav-item">
-   <a class="nav-link" href="login.php">Login</a>
+   <a class="nav-link <?php if ($file === 'login') echo 'active' ?>" href="login.php">Login</a>
 </li>
-<li class="nav-item">
+<li class="nav-item <?php if ($file === 'signup') echo 'active' ?>">
    <a class="nav-link" href="signup.php">Sign Up</a>
 </li>
 <?php $notLoggedIn = ob_get_clean(); ?>
@@ -36,11 +39,11 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 
    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-         <li class="nav-item active">
+         <li class="nav-item <?php if ($file === 'home') echo 'active' ?>">
             <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="aboutRML.php">About RML</a>
+            <a class="nav-link <?php if ($file === 'aboutRML') echo 'active' ?>" href="aboutRML.php">About RML</a>
          </li>
       </ul>
       <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
