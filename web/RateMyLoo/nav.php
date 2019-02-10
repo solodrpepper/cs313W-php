@@ -25,7 +25,7 @@ require 'db_connect.php';
 <!-- HTML to display if user is logged in -->
 <?php ob_start(); ?>
 <li class="nav-item">
-   <span>Welcome, <?php echo "$uname" ?></span>
+   <a class="nav-link" href="#">Welcome, <?php echo "$uname" ?></a>
 </li>
 <li class="nav-item">
    <a class="nav-link" href="logout.php">Logout</a>
