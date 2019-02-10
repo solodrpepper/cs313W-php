@@ -14,15 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pword = $_POST['hash_ed'];
 
     if ($db) {
-        $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = ?');
-        $statement->bindParam('s', $email);
+        $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = :email');
+        $statement->bindParam(':email', $email);
         $statement->execute();
-        $result = $statement->get_result();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($result->num_rows == 1) {
-            $db_field = $result->fetch_assoc();
+        if ($result['email'] == $email) {
             // Verify the password
-            if (password_verify($pword, $db_field['hash_ed'])) {
+            if (password_verify($pword, $result['hash_ed'])) {
                 session_start();
                 $_SESSION['login'] = "1";
                 // if successfull redirect to the home page
