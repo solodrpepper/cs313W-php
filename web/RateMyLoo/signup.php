@@ -14,11 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pword = $_POST['hash_ed'];
 
     echo "are we getting here?<br>";
-    echo "Is the db breaking it?<br>";
 
     $statement = $db->prepare("SELECT email, username, hash_ed FROM users WHERE email = :email");
+    echo "are we getting here (after the prepare)?<br>";
     $statement->bindParam(':email', $email, PARAM_STR);
+    echo "are we getting here (after the bindParam)?<br>";
     $statement->execute();
+    echo "are we getting here (after the execute)?<br>";
     $result = $statement->get_result();
 
     if ($result->num_rows > 0) {
