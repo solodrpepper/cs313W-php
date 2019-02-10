@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pword = $_POST['hash_ed'];
 
     if ($db) {
-        $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = :email');
+        $statement = $db->prepare('SELECT email, username, hash_ed FROM users WHERE email = :email');
         $statement->bindParam(':email', $email);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verify the password
             if (password_verify($pword, $result['hash_ed'])) {
                 session_start();
+                $uname = $result['username'];
                 $_SESSION['login'] = "1";
                 $_SESSION['uname'] = "$uname";
                 // if successfull redirect to the home page
