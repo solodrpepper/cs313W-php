@@ -57,13 +57,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <?php require 'nav.php';?>
-    <FORM NAME="signUpForm" METHOD="POST" ACTION="signup.php">
-        Email: <INPUT TYPE='TEXT' Name='email' value="<?php print $uname;?>"><br />
-        Password: <INPUT TYPE='TEXT' Name='password' value="<?php print $pword;?>">
-        <p>
-            <INPUT TYPE="Submit" Name="signUpSubmit" VALUE="Register">
-        </p>
-    </FORM>
+    <div class="container login_form">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4">
+                <div class="card">
+                    <article class="card-body">
+                        <h4 class="card-title mb-4 mt-1">Sign up</h4>
+                        <form NAME="signUpForm" METHOD="POST" ACTION="signup.php">
+                            <div class="form-group">
+                                <label>Your email</label>
+                                <input class="form-control" name='username' placeholder="Email" type="email" value="<?php print $uname;?>"
+                                    required autofocus>
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <a class="float-right" href="#">Forgot?</a>
+                                <label>Your password</label>
+                                <INPUT class="form-control" name='password' value="<?php print $pword;?>"
+                                    required placeholder="******" type="password">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Sign Up
+                                </button>
+                            </div> <!-- form-group// -->
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+            </div> <!-- row.// -->
+        </div> <!-- col.// -->
+    </div>
     <?php print $errorMessage;?>
 </body>
 
