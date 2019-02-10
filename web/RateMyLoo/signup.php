@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statement = $db->prepare("SELECT email, username, hash_ed FROM users WHERE email = :email");
     $statement->bindParam(':email', $email, PARAM_STR);
 
-    if ($stmt->execute()) { 
+    if ($statement->execute()) { 
         echo "It worked!!<br>";
     } else {
         echo "It broke.. :(<br>";
