@@ -5,7 +5,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
    $isLoggedIn = 0;
 } else {
    $isLoggedIn = 1;
-   $uname = $_SESSION['uname'];
+   //$uname = $_SESSION['uname'];
 }
 
 require 'db_connect.php';
@@ -25,7 +25,7 @@ require 'db_connect.php';
 <!-- HTML to display if user is logged in -->
 <?php ob_start(); ?>
 <li class="nav-item">
-   <a class="nav-link" href="#">Welcome, <?php echo "$uname"; ?></a>
+   <a class="nav-link" href="#">Welcome, "$uname"</a>
 </li>
 <li class="nav-item">
    <a class="nav-link" href="logout.php">Logout</a>
