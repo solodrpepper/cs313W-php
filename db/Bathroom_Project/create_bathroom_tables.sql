@@ -1,20 +1,29 @@
 CREATE TABLE users (
      user_id   SERIAL PRIMARY KEY
-   , fname     VARCHAR(12) NOT NULL
-   , lname     VARCHAR(15) NOT NULL
+   , username  VARCHAR(16) NOT NULL
    , email     VARCHAR(64) NOT NULL
    , hash      VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE floors (
+    floor_id    SERIAL PRIMARY KEY
+,   floor_value INTEGER NOT NULL
 );
 
 CREATE TABLE buildings (
      building_id     SERIAL PRIMARY KEY
    , building_name   VARCHAR(25) NOT NULL
-   , floor_num       INTEGER     NOT NULL
 );
 
 CREATE TABLE bathrooms (
      bathroom_id      SERIAL  PRIMARY KEY
    , building_id      INTEGER REFERENCES buildings(building_id) 
+);
+
+CREATE TABLE building_floor (
+    building_floor_id SERIAL PRIMARY KEY
+,   building_id       INTEGER REFERENCES buildings(building_id) NOT NULL
+,   floor_id          INTEGER REFERENCES floors(floor_id) NOT NULL
 );
 
 CREATE TABLE ratings (
@@ -34,3 +43,30 @@ CREATE TABLE ratings (
    , broken          BOOLEAN
    , single_stall    BOOLEAN
 );
+
+-- Insert into the floors table
+INSERT INTO floors (floor_value) VALUES
+  (0), -- index 1
+  (1), -- index 2
+  (2), -- index 3
+  (3), -- index 4
+  (4), -- index 5
+  (5); -- index 6
+
+-- Insert into the buildings
+INSERT INTO buildings (building_name) VALUES 
+  ('STC')
+, ('Taylor')
+, ('Austin');
+
+INSERT INTO building_floor (building_id, floor_id) VALUES
+  (1, 2)  -- STC 1st floor
+, (1, 3)  -- STC 2nd floor
+, (1, 4); -- STC 3nd floor
+
+
+
+
+
+
+

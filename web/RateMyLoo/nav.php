@@ -27,7 +27,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 <?php $loggedIn = ob_get_clean(); ?>
 
 <!-- Navbar elements -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light nav-pills">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
                echo "$notLoggedIn";
             } else {
                echo '<li class="nav-item">';
-               echo   "<a class='nav-link' href='#'>Welcome, $uname</a>";
+               echo   "<span class='navbar-text'>Welcome, $uname</span>";
                echo '</li>';
                echo "$loggedIn";
             }
