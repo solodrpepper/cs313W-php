@@ -1,6 +1,7 @@
 <!-- Found on online tutorial -->
 <?php
 $uname = "";
+$email = "";
 $pword = "";
 $errorMessage = "";
 
@@ -8,12 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'db_connect.php';
     $db = get_db();
 
-    $uname = $_POST['email'];
+    $uname = $_POST['username'];
+    $email = $_POST['email'];
     $pword = $_POST['hash_ed'];
 
     if ($db) {
         $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = ?');
-        $statement->bind_param('s', $uname);
+        $statement->bind_param('s', $email);
         $statement->execute();
         $result = $statement->get_result();
 
@@ -74,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <form NAME="loginForm" METHOD="POST" ACTION="login.php">
                             <div class="form-group">
                                 <label>Your email</label>
-                                <input class="form-control" name='username' placeholder="Email" type="email" value="<?php print $uname;?>"
+                                <input class="form-control" name='email' placeholder="Email" type="email" value="<?php print $email;?>"
                                     required autofocus>
                             </div> <!-- form-group// -->
                             <div class="form-group">

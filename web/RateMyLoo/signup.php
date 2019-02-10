@@ -1,6 +1,7 @@
 <!-- Found on online tutorial -->
 <?php
 $uname = "";
+$email = "";
 $pword = "";
 $errorMessage = "";
 
@@ -8,24 +9,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'db_connect.php';
     $db = get_db();
 
-    $uname = $_POST['email'];
+    $uname = $_POST['username'];
+    $email = $_POST['email'];
     $pword = $_POST['hash_ed'];
 
     if ($db) {
-        $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = ?');
-        $statement->bind_param('s', $uname);
+        $statement = $db->prepare('SELECT email, username, hash_ed FROM users WHERE email = ?');
+        $statement->bind_param('s', $email);
         $statement->execute();
         $result = $statement->get_result();
 
         if ($result->num_rows > 0) {
-            $errorMessage = "Username already taken";
+            $errorMessage = "Email already used";
         } else {
-            $phash = password_hash($pword, PASSWORD_DEFAULT);
-            $statement = $db_found->prepare("INSERT INTO users (email, hash_ed) VALUES (?, ?)");
-            $statement->bind_param('ss', $uname, $phash);
+            // check to see if username is used
+            $statement->bind_param('s', $uname);
             $statement->execute();
+            $result = $statement->get_result();
 
-            header("Location: login.php");
+            if ($result->num_rows > 0) {
+                $errorMessage = "Sorry, that username is already taken :(";
+            } else {
+                $phash = password_hash($pword, PASSWORD_DEFAULT);
+                $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (?, ?, ?)");
+                $statement->bind_param('sss', $email, $uname, $phash);
+                $statement->execute();
+    
+                header("Location: login.php");
+            }
         }
     } else {
         $errorMessage = "Database Not Found";
@@ -68,16 +79,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
                         <form NAME="signUpForm" METHOD="POST" ACTION="signup.php">
                             <div class="form-group">
-                                <label>Your email</label>
-                                <input class="form-control" name='username' placeholder="Email" type="email" value="<?php print $uname;?>"
-                                    required autofocus>
-                            </div> <!-- form-group// -->
+                                <label>Your Username</label>
+                                <input class="form-control" name='username' placeholder="Username" type="text" value="<?php print $uname;?>"
+                                    required autofocus maxlength="16">
+                            </div> <!-- form-group username// -->
                             <div class="form-group">
-                                <a class="float-right" href="#">Forgot?</a>
+                                <label>Your email</label>
+                                <input class="form-control" name='email' placeholder="Email" type="email" value="<?php print $email;?>"
+                                    required>
+                            </div> <!-- form-group email// -->
+                            <div class="form-group">
                                 <label>Your password</label>
                                 <INPUT class="form-control" name='password' value="<?php print $pword;?>"
                                     required placeholder="******" type="password">
-                            </div> <!-- form-group// -->
+                            </div> <!-- form-group password// -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Sign Up
                                 </button>
