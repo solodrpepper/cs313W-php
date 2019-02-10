@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($db) {
         $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = ?');
-        $statement->bind_param('s', $email);
+        $statement->bindParam('s', $email);
         $statement->execute();
         $result = $statement->get_result();
 
