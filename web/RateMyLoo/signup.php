@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "are we getting here?<br>";
     echo "Is the db breaking it?<br>";
 
-    $statement = $db->prepare('SELECT email, username, hash_ed FROM users WHERE email = ?');
-    $statement->bindParam('s', $email);
+    $statement = $db->prepare("SELECT email, username, hash_ed FROM users WHERE email = :email");
+    $statement->bindParam(':email', $email, PARAM_STR);
     $statement->execute();
     $result = $statement->get_result();
 
@@ -33,8 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errorMessage = "Sorry, that username is already taken :(";
         } else {
             $phash = password_hash($pword, PASSWORD_DEFAULT);
-            $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (?, ?, ?)");
-            $statement->bindParam('sss', $email, $uname, $phash);
+            $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (:email, :username, :hash_ed)");
+            $statement->bindParam(':email', $email, PARAM_STR);
+            $statement->bindParam(':username', $uname, PARAM_STR);
+            $statement->bindParam(':hash_ed', $phash, PARAM_STR);
             $statement->execute();
     
             header("Location: login.php");
