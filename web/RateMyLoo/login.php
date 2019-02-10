@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($pword, $result['hash_ed'])) {
                 session_start();
                 $_SESSION['login'] = "1";
+                $_SESSION['uname'] = "$uname";
                 // if successfull redirect to the home page
                 header("Location: home.php");
             } else {
