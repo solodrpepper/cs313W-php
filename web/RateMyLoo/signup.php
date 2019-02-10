@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $pword = $_POST['hash_ed'];
 
-    $statement = $db->prepare("SELECT email, username, hash_ed FROM users WHERE email = :email");
+    $statement = $db->prepare("SELECT email FROM users WHERE email = :email");
     $statement->bindParam(':email', $email);
 
     try {
@@ -35,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errorMessage = "Email already used";
     } else {
         // check to see if username is used
-        $statement->bindParam('s', $uname);
+        $statement = $db->prepare("SELECT username FROM users WHERE username = :username");
+        $statement->bindParam(':username', $uname);
         $statement->execute();
         $result = $statement->get_result();
 
@@ -44,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $phash = password_hash($pword, PASSWORD_DEFAULT);
             $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (:email, :username, :hash_ed)");
-            $statement->bindParam(':email', $email, PARAM_STR);
-            $statement->bindParam(':username', $uname, PARAM_STR);
-            $statement->bindParam(':hash_ed', $phash, PARAM_STR);
+            $statement->bindParam(':email', $email);
+            $statement->bindParam(':username', $uname);
+            $statement->bindParam(':hash_ed', $phash);
             $statement->execute();
     
             header("Location: login.php");
