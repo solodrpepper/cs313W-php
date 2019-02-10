@@ -13,4 +13,9 @@
     background-image: url("photos/out_house.jpg");
     background-size: cover;
     height: 100vh;
+
+    .container {
+        background-image: linear-gradient(to right top, #e3ffa6, #c0de7f, #9dbe5a, #7b9f34, #598100);
+        opacity: 0.5;
+    }
 }
