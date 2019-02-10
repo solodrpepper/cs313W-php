@@ -64,8 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body style="width: 100%;
             height: 100%;
-            margin: 0;
-            padding: 0;
             display:table;
             display:table-cell;
             vertical-align:middle;">
