@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "are we getting here?<br>";
     echo "$db<br>";
+    echo "Is the db breaking it?<br>";
 
     if ($db) {
         $statement = $db->prepare('SELECT email, username, hash_ed FROM users WHERE email = ?');
