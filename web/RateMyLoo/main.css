@@ -9,8 +9,9 @@
   height: 100vh;
 }
 .jumbotron .container {
-  background-image: linear-gradient(to right top, #e3ffa6, #c0de7f, #9dbe5a, #7b9f34, #598100);
-  opacity: 0.5;
+  background-color: white;
+  opacity: 0.75;
+  border-radius: 3px;
 }
 
 /*# sourceMappingURL=main.css.map */
