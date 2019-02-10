@@ -14,36 +14,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pword = $_POST['hash_ed'];
 
     echo "are we getting here?<br>";
-    echo "$db<br>";
     echo "Is the db breaking it?<br>";
 
-    if ($db) {
-        $statement = $db->prepare('SELECT email, username, hash_ed FROM users WHERE email = ?');
-        $statement->bindParam('s', $email);
+    $statement = $db->prepare('SELECT email, username, hash_ed FROM users WHERE email = ?');
+    $statement->bindParam('s', $email);
+    $statement->execute();
+    $result = $statement->get_result();
+
+    if ($result->num_rows > 0) {
+        $errorMessage = "Email already used";
+    } else {
+        // check to see if username is used
+        $statement->bindParam('s', $uname);
         $statement->execute();
         $result = $statement->get_result();
 
         if ($result->num_rows > 0) {
-            $errorMessage = "Email already used";
+            $errorMessage = "Sorry, that username is already taken :(";
         } else {
-            // check to see if username is used
-            $statement->bindParam('s', $uname);
+            $phash = password_hash($pword, PASSWORD_DEFAULT);
+            $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (?, ?, ?)");
+            $statement->bindParam('sss', $email, $uname, $phash);
             $statement->execute();
-            $result = $statement->get_result();
-
-            if ($result->num_rows > 0) {
-                $errorMessage = "Sorry, that username is already taken :(";
-            } else {
-                $phash = password_hash($pword, PASSWORD_DEFAULT);
-                $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (?, ?, ?)");
-                $statement->bindParam('sss', $email, $uname, $phash);
-                $statement->execute();
     
-                header("Location: login.php");
-            }
+            header("Location: login.php");
         }
-    } else {
-        $errorMessage = "Database Not Found";
     }
 }
 ?>
