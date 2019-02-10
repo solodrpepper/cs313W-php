@@ -3,4 +3,9 @@
   align-items: center;
 }
 
+.jumbotron {
+  background-image: url("photos/out_house.jpg");
+  background-size: cover;
+}
+
 /*# sourceMappingURL=main.css.map */
