@@ -6,6 +6,7 @@
 .jumbotron {
   background-image: url("photos/out_house.jpg");
   background-size: cover;
+  height: 100vh;
 }
 
 /*# sourceMappingURL=main.css.map */
