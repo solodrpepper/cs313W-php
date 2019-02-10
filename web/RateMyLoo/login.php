@@ -70,14 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form NAME="loginForm" METHOD="POST" ACTION="login.php">
                         <div class="form-group">
                             <label>Your email</label>
-                            <INPUT TYPE='TEXT' Name='username' value="<?php print $uname;?>"
-                                maxlength="30" required autofocus>
+                            <input class="form-control" name='username' placeholder="Email" type="email" 
+                                   value="<?php print $uname;?>" required autofocus>
                         </div> <!-- form-group// -->
                         <div class="form-group">
                             <a class="float-right" href="#">Forgot?</a>
                             <label>Your password</label>
-                            <INPUT TYPE='TEXT' Name='password' value="<?php print $pword;?>"
-                                maxlength="16" required>
+                            <INPUT class="form-control" name='password' value="<?php print $pword;?>" 
+                                   required placeholder="******" type="password">
                         </div> <!-- form-group// -->
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Login </button>
