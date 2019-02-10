@@ -61,39 +61,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <?php require 'nav.php';?>
-    <FORM NAME="loginForm" METHOD="POST" ACTION="login.php">
-        <!-- Here the user will enter in their credentials -->
-        Email: <INPUT TYPE='TEXT' Name='username' value="<?php print $uname;?>"
-            maxlength="30" required autofocus>
-        Password: <INPUT TYPE='TEXT' Name='password' value="<?php print $pword;?>"
-            maxlength="16" required>
-        <p>
-            <INPUT TYPE="Submit" Name="loginSubmit" VALUE="Login">
-        </p>
-    </FORM>
+    <div class="container">
+        <aside class="col-sm-4">
+            <div class="card">
+                <article class="card-body">
+                    <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+                    <h4 class="card-title mb-4 mt-1">Sign in</h4>
+                    <form NAME="loginForm" METHOD="POST" ACTION="login.php">
+                        <div class="form-group">
+                            <label>Your email</label>
+                            <INPUT TYPE='TEXT' Name='username' value="<?php print $uname;?>"
+                                maxlength="30" required autofocus>
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <a class="float-right" href="#">Forgot?</a>
+                            <label>Your password</label>
+                            <INPUT TYPE='TEXT' Name='password' value="<?php print $pword;?>"
+                                maxlength="16" required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Login </button>
+                        </div> <!-- form-group// -->
+                    </form>
+                </article>
+            </div> <!-- card.// -->
+        </aside> <!-- col.// -->
+    </div>
 
-    <div class="card">
-        <article class="card-body">
-            <a href="" class="float-right btn btn-outline-primary">Sign up</a>
-            <h4 class="card-title mb-4 mt-1">Sign in</h4>
-            <form NAME="loginForm" METHOD="POST" ACTION="login.php">
-                <div class="form-group">
-                    <label>Your email</label>
-                    <INPUT TYPE='TEXT' Name='username' value="<?php print $uname;?>"
-                        maxlength="30" required autofocus>
-                </div> <!-- form-group// -->
-                <div class="form-group">
-                    <a class="float-right" href="#">Forgot?</a>
-                    <label>Your password</label>
-                    <INPUT TYPE='TEXT' Name='password' value="<?php print $pword;?>"
-                        maxlength="16" required>
-                </div> <!-- form-group// -->
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Login </button>
-                </div> <!-- form-group// -->
-            </form>
-        </article>
-    </div> <!-- card.// -->
+
+
     <p>
         <?php print $errorMessage;?>
     </p>
