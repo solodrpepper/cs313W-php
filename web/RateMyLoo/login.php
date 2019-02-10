@@ -65,10 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <?php require 'nav.php';?>
     <div class="container login_form">
-        <aside class="col-sm-4">
+        <aside class="col-sm">
             <div class="card">
                 <article class="card-body">
-                    <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+                    <a href="signup.php" class="float-right btn btn-outline-primary">Sign up</a>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
                     <form NAME="loginForm" METHOD="POST" ACTION="login.php">
                         <div class="form-group">
