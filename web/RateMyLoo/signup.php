@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pword = $_POST['hash_ed'];
 
     if ($db) {
-        $statement = $db->prepare('SELECT  FROM login WHERE email = ?');
+        $statement = $db->prepare('SELECT email, hash_ed FROM users WHERE email = ?');
         $statement->bind_param('s', $uname);
         $statement->execute();
         $result = $statement->get_result();
