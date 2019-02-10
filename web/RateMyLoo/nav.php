@@ -49,7 +49,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
                echo "$notLoggedIn";
             } else {
                echo '<li class="nav-item">';
-               echo   '<a class="nav-link" href="#">Welcome, </a>';
+               echo   "<a class='nav-link' href='#'>Welcome, $uname</a>";
                echo '</li>';
                echo "$loggedIn";
             }
