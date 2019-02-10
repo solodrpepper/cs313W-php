@@ -31,7 +31,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
    </button>
-   <i class="fas fa-toilet"></i>
+   <span class="fas fa-toilet" style="font-size: 18">  </span>
    <a class="navbar-brand" href="home.php"> Rate My Loo</a>
 
    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
