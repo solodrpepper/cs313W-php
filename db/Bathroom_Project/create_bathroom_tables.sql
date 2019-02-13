@@ -3,7 +3,7 @@ CREATE TABLE users (
    , username  VARCHAR(16)  NOT NULL
    , email     VARCHAR(64)  NOT NULL
    , hash      VARCHAR(255) NOT NULL
-   , is_male	BOOLEAN		 NOT NULL
+   , is_male	 BOOLEAN		  NOT NULL
 );
 
 CREATE TABLE floors (
@@ -17,8 +17,8 @@ CREATE TABLE buildings (
 );
 
 CREATE TABLE bathrooms (
-     bathroom_id      SERIAL  PRIMARY KEY
-,	  is_mens			 BOOLEAN
+    bathroom_id SERIAL  PRIMARY KEY
+,	  is_mens     BOOLEAN
 );
 
 CREATE TABLE building_floor (
@@ -28,9 +28,9 @@ CREATE TABLE building_floor (
 );
 
 CREATE TABLE bathrooms_building_floor (
-	bathrooms_building_floor_id 	SERIAL PRIMARY KEY
-,  building_floor_id 			 	INTEGER REFERENCES bathrooms_building_floor(bathrooms_building_floor_id)
-,	bathroom_id 						INTEGER REFERENCES bathrooms(bathroom_id)
+	 bathrooms_building_floor_id 	SERIAL  PRIMARY KEY
+,  building_floor_id 			 	    INTEGER REFERENCES bathrooms_building_floor(bathrooms_building_floor_id)
+,	 bathroom_id  						    INTEGER REFERENCES bathrooms(bathroom_id)
 );
 
 CREATE TABLE ratings (

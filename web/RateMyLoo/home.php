@@ -49,7 +49,19 @@ $db = get_db();
          teacher solutio nand adapted to my project -->
 
 <?php
-$statement = $db->prepare("SELECT building_floor_id, bathroom_id FROM bathrooms_building_floor");
+$statement = $db->prepare(
+   "SELECT bbf.building_id        AS bfid
+    ,      bbf.bathroom_id        AS bid
+    ,      b.building_name        AS bn
+    ,      b.building_id          AS bdid
+    ,      f.floor_id             AS fid
+    ,      f.floor_value          AS fv
+    FROM   bathrooms_building_floor  bbf
+    ,      bathrooms                 b
+    ,      floors                    f
+    WHERE  bbf.bfid = b.bdid
+    "
+);
 $statement->execute();
 // Go through each result
 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
