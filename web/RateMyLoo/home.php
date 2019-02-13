@@ -70,7 +70,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // name
     $floor = $row['building_floor_id'];
     $bathtoom = $row['bathroom_id'];
-    echo "<p>$bathtoom<p>";
+    var_dump($row);
 }
 ?>
 
