@@ -45,6 +45,23 @@ $db = get_db();
         </div>
     </div>
 
+    <!-- Taken and adapted from TA in week 6 from 
+         teacher solutio nand adapted to my project -->
+
+<?php
+$statement = $db->prepare("SELECT building_floor_id, bathroom_id FROM bathrooms_building_floor");
+$statement->execute();
+// Go through each result
+while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+    // The variable "row" now holds the complete record for that
+    // row, and we can access the different values based on their
+    // name
+    $floor = $row['building_floor_id'];
+    $bathtoom = $row['bathroom_id'];
+    echo "<p>$bathtoom<p>";
+}
+?>
+
 </body>
 
 </html>

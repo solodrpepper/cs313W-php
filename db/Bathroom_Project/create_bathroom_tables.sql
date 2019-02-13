@@ -1,8 +1,9 @@
 CREATE TABLE users (
      user_id   SERIAL PRIMARY KEY
-   , username  VARCHAR(16) NOT NULL
-   , email     VARCHAR(64) NOT NULL
+   , username  VARCHAR(16)  NOT NULL
+   , email     VARCHAR(64)  NOT NULL
    , hash      VARCHAR(255) NOT NULL
+   , is_male	BOOLEAN		 NOT NULL
 );
 
 CREATE TABLE floors (
@@ -17,13 +18,19 @@ CREATE TABLE buildings (
 
 CREATE TABLE bathrooms (
      bathroom_id      SERIAL  PRIMARY KEY
-   , building_id      INTEGER REFERENCES buildings(building_id) 
+,	  is_mens			 BOOLEAN
 );
 
 CREATE TABLE building_floor (
     building_floor_id SERIAL PRIMARY KEY
 ,   building_id       INTEGER REFERENCES buildings(building_id) NOT NULL
 ,   floor_id          INTEGER REFERENCES floors(floor_id) NOT NULL
+);
+
+CREATE TABLE bathrooms_building_floor (
+	bathrooms_building_floor_id 	SERIAL PRIMARY KEY
+,  building_floor_id 			 	INTEGER REFERENCES bathrooms_building_floor(bathrooms_building_floor_id)
+,	bathroom_id 						INTEGER REFERENCES bathrooms(bathroom_id)
 );
 
 CREATE TABLE ratings (
@@ -59,14 +66,25 @@ INSERT INTO buildings (building_name) VALUES
 , ('Taylor')
 , ('Austin');
 
+-- Insert into the building_floor table
 INSERT INTO building_floor (building_id, floor_id) VALUES
   (1, 2)  -- STC 1st floor
 , (1, 3)  -- STC 2nd floor
 , (1, 4); -- STC 3nd floor
 
+-- Insert into the bathroom table (basiclly for whether it's male or female)
+INSERT INTO bathrooms (is_mens) VALUES
+	('TRUE')		-- Males 	restroom
+,	('FALSE');	-- Females 	restroom
 
 
-
-
+-- Insert into the building_floor table
+INSERT INTO bathrooms_building_floor (building_floor_id, bathroom_id) VALUES
+	(1, 1)	-- Male   STC 1st Floor
+,	(1, 2)	-- Female STC 1st Floor
+,	(2, 1)	-- Male   STC 2st Floor
+,	(2, 2)	-- Female STC 2st Floor
+,	(3, 1)	-- Male   STC 3st Floor
+,	(3, 2);	-- Female STC 3st Floor
 
 
