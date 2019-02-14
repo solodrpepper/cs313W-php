@@ -29,7 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['uname'] = "$uname";
                 $_SESSION['is_male'] = "$is_male";
                 // if successfull redirect to the home page
+                flush();
                 header("Location: home.php");
+                die();
             } else {
                 $errorMessage = "Login Failed";
                 session_start();

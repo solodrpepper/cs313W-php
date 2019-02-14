@@ -98,7 +98,20 @@ SELECT bbf.building_floor_id      AS "Building Floor"
     WHERE  bbf.building_floor_id = b.building_id
 
 
-        SELECT u.is_male 
-        ,      u.user_id
-        FROM users u
-        WHERE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

@@ -55,7 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $statement->bindParam(':is_male', $is_male);
             $statement->execute();
     
+            flush();
             header("Location: login.php");
+            die();
         }
     }
 }
