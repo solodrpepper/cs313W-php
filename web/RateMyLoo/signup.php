@@ -116,12 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div> <!-- form-group password// -->
                             <div class="form-group">
                                 <label>Sex</label><br/>
-                                <INPUT class="form-control" name='sex'
-                                <?php if ($is_male == true) {echo 'checked';}?>
-                                    required type='radio'> Male
-                                <INPUT class="form-control" name='sex'
-                                <?php if ($is_male == false) {echo 'checked';}?>
-                                    required type='radio'> Female
+                                <INPUT class="form-control" name='sex' <?php if ($is_male == true)  {echo 'checked';}?> required type='radio'> Male
+                                <INPUT class="form-control" name='sex' <?php if ($is_male == false) {echo 'checked';}?> required type='radio'> Female
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Sign Up
