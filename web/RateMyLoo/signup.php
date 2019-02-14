@@ -115,13 +115,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     required placeholder="******" type="password">
                             </div> <!-- form-group password// -->
                             <div class="form-group">
-                                <label>Sex</label>
-                                Male <INPUT class="form-control" name='sex'
+                                <label>Sex</label><br/>
+                                <INPUT class="form-control" name='sex'
                                 <?php if ($is_male == true) {echo 'checked';}?>
-                                    required type='radio'>
-                                Female <INPUT class="form-control" name='sex'
+                                    required type='radio'> Male
+                                <INPUT class="form-control" name='sex'
                                 <?php if ($is_male == false) {echo 'checked';}?>
-                                    required type='radio'>
+                                    required type='radio'> Female
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Sign Up

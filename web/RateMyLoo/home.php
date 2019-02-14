@@ -56,7 +56,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     <!-- Taken and adapted from TA in week 6 from 
          teacher solutio nand adapted to my project -->
 
-    <?php
+<?php
 $statement = $db->prepare(
    "SELECT bbf.building_floor_id  AS \"Building Floor\"
     ,      bbf.bathroom_id        AS \"Bathroom ID\"
