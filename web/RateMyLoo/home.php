@@ -96,7 +96,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 </div>
             </div>\n";
 
-    if ($item_count % 3 != 0) {
+    if ($item_count % 3 == 2) {
         echo "</div>\n";
     }
 
@@ -104,7 +104,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 }
 
 // just in case it ended on an odd
-if ($item_count % 3 != 0) {
+if ($item_count % 3 == 2) {
     echo "</div>\n";
 }
 
