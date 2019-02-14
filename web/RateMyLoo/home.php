@@ -99,6 +99,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     if ($item_count % 2 == 0) {
         echo "</div>";
     }
+    $item_count++;
 }
 
 // end container div
