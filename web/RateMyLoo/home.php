@@ -69,6 +69,9 @@ $statement = $db->prepare(
 $statement->execute();
 // Go through each result
 
+// count how many iterations to determine when to start a new row
+$item_count = 0;
+
 // start container div
 echo "<div class='container'>";
 
@@ -79,18 +82,23 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $floor = $row['building_floor_id'];
     $bathtoom = $row['bathroom_id'];
 
-    echo "<div class='row'>
-            <div class='col-sm-6'>
+    if ($item_count % 2 == 0) {
+        echo "<div class='row'>";
+    }
+
+    echo "<div class='col-sm-6'>
                 <div class='card'>
                     <div class='card-body'>
                         <h5 class='card-title'>Special title treatment</h5>
-                        <p class='card-text'> $row </p>
+                        <p class='card-text'> $floor </p>
                         <a href='#' class='btn btn-primary'>Go somewhere</a>
                     </div>
                 </div>
-            </div>
-        </div>";
+            </div>";
 
+    if ($item_count % 2 == 0) {
+        echo "</div>";
+    }
 }
 
 // end container div
