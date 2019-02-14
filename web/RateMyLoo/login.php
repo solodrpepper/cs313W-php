@@ -6,7 +6,7 @@ $pword = "";
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require 'db_connect.php';
+    require_once 'db_connect.php';
     $db = get_db();
 
     $uname   = $_POST['username'];

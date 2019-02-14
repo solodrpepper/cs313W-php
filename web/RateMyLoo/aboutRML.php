@@ -28,6 +28,6 @@
     <title>Rate My Loo - About RML</title>
 </head>
 <body>
-<?php require 'nav.php'; ?>
+<?php require_once 'nav.php'; ?>
 </body>
 </html>
