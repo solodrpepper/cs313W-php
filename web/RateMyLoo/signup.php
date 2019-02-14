@@ -115,8 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     required placeholder="******" type="password">
                             </div> <!-- form-group password// -->
                             <div class="form-group">
+                                <label>Sex</label><br />
                                 <div class='row'>
-                                    <label>Sex</label><br />
                                     <div class='col'>
                                         <input class="form-check-inline" name='sex' <?php if ($is_male == true) {echo 'checked';}?>
                                         required type='radio'>Male
