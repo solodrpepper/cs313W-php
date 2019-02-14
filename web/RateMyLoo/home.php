@@ -68,20 +68,24 @@ $statement = $db->prepare(
 );
 $statement->execute();
 // Go through each result
+
+// start container div
+echo "<div class='container'>";
+
 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // The variable "row" now holds the complete record for that
     // row, and we can access the different values based on their
     // name
     $floor = $row['building_floor_id'];
     $bathtoom = $row['bathroom_id'];
-    var_dump($row);
+    $temp_row = var_dump($row);
 
     echo "<div class='row'>
             <div class='col-sm-6'>
                 <div class='card'>
                     <div class='card-body'>
                         <h5 class='card-title'>Special title treatment</h5>
-                        <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
+                        <p class='card-text'> $temp_row </p>
                         <a href='#' class='btn btn-primary'>Go somewhere</a>
                     </div>
                 </div>
@@ -89,6 +93,9 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
         </div>";
 
 }
+
+// end container div
+echo "</div>";
 ?>
 
 </body>
