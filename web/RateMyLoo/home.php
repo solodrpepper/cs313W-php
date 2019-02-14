@@ -73,7 +73,7 @@ $statement->execute();
 $item_count = 0;
 
 // start container div
-echo "<div>";
+echo "<div>\n";
 
 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // The variable "row" now holds the complete record for that
@@ -83,7 +83,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $bathtoom = $row['bathroom_id'];
 
     if ($item_count % 2 == 0) {
-        echo "<div class='row'>";
+        echo "<div class='row'>\n";
     }
 
     echo "<div class='col-sm-6'>
@@ -94,16 +94,16 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                         <a href='#' class='btn btn-primary'>Go somewhere</a>
                     </div>
                 </div>
-            </div>";
+            </div>\n";
 
     if ($item_count % 2 == 0) {
-        echo "</div>";
+        echo "</div>\n";
     }
     $item_count++;
 }
 
 // end container div
-echo "</div>";
+echo "</div>\n";
 ?>
 
 </body>
