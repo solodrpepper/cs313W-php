@@ -9,12 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'db_connect.php';
     $db = get_db();
 
-    $uname = $_POST['username'];
-    $email = $_POST['email'];
-    $pword = $_POST['hash_ed'];
+    $uname   = $_POST['username'];
+    $email   = $_POST['email'];
+    $pword   = $_POST['hash_ed'];
+    $is_male = $_POST['is_male'];
 
     if ($db) {
-        $statement = $db->prepare('SELECT email, username, hash_ed FROM users WHERE email = :email');
+        $statement = $db->prepare('SELECT email, username, hash_ed, is_male FROM users WHERE email = :email');
         $statement->bindParam(':email', $email);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -26,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $uname = $result['username'];
                 $_SESSION['login'] = "1";
                 $_SESSION['uname'] = "$uname";
+                $_SESSION['is_male'] = "$is_male";
                 // if successfull redirect to the home page
                 header("Location: home.php");
             } else {

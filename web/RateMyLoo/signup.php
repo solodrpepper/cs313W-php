@@ -14,9 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'db_connect.php';
     $db = get_db();
 
-    $uname = $_POST['username'];
-    $email = $_POST['email'];
-    $pword = $_POST['hash_ed'];
+    $uname   = $_POST['username'];
+    $email   = $_POST['email'];
+    $pword   = $_POST['hash_ed'];
+    $is_male = $_POST['is_male'];
 
     $statement = $db->prepare("SELECT email FROM users WHERE email = :email");
     $statement->bindParam(':email', $email);
@@ -47,10 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errorMessage = "Sorry, that username is already taken :(";
         } else {
             $phash = password_hash($pword, PASSWORD_DEFAULT);
-            $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (:email, :username, :hash_ed)");
+            $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (:email, :username, :hash_ed, :is_male)");
             $statement->bindParam(':email', $email);
             $statement->bindParam(':username', $uname);
             $statement->bindParam(':hash_ed', $phash);
+            $statement->bindParam(':is_male', $is_male);
             $statement->execute();
     
             header("Location: login.php");
@@ -112,6 +114,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <INPUT class="form-control" name='password' value="<?php print $pword;?>"
                                     required placeholder="******" type="password">
                             </div> <!-- form-group password// -->
+                            <div class="form-group">
+                                <label>Sex</label>
+                                Male <INPUT class="form-control" name='sex'
+                                <?php if ($is_male == true) {echo 'checked';}?>
+                                    required type='radio'>
+                                Female <INPUT class="form-control" name='sex'
+                                <?php if ($is_male == false) {echo 'checked';}?>
+                                    required type='radio'>
+                            </div> <!-- form-group sex// -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Sign Up
                                 </button>

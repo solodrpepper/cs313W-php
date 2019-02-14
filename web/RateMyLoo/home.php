@@ -2,6 +2,14 @@
 require 'db_connect.php';
 $db = get_db();
 
+session_start();
+
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+   $isLoggedIn = 0;
+} else {
+   $isLoggedIn = 1;
+   $is_male = $_SESSION['is_male'];
+}
 
 ?>
 
@@ -50,16 +58,17 @@ $db = get_db();
 
 <?php
 $statement = $db->prepare(
-   "SELECT bbf.building_id        AS bfid
-    ,      bbf.bathroom_id        AS bid
-    ,      b.building_name        AS bn
-    ,      b.building_id          AS bdid
-    ,      f.floor_id             AS fid
-    ,      f.floor_value          AS fv
+   "SELECT bbf.building_floor_id  AS "Building Floor"
+    ,      bbf.bathroom_id        AS "Bathroom ID"
+    ,      b.building_name        As "Building Name"
+    ,      b.building_id          AS "Building ID"
     FROM   bathrooms_building_floor  bbf
-    ,      bathrooms                 b
-    ,      floors                    f
-    WHERE  bbf.bfid = b.bdid
+    ,      buildings                 b
+    WHERE  bbf.building_floor_id = b.building_id
+        SELECT u.is_male 
+        ,      u.user_id
+        FROM users u
+        WHERE 
     "
 );
 $statement->execute();

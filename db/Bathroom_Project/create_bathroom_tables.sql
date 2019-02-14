@@ -29,7 +29,7 @@ CREATE TABLE building_floor (
 
 CREATE TABLE bathrooms_building_floor (
 	 bathrooms_building_floor_id 	SERIAL  PRIMARY KEY
-,  building_floor_id 			 	    INTEGER REFERENCES bathrooms_building_floor(bathrooms_building_floor_id)
+,  building_floor_id 			 	    INTEGER REFERENCES building_floor(building_floor_id)
 ,	 bathroom_id  						    INTEGER REFERENCES bathrooms(bathroom_id)
 );
 
@@ -87,4 +87,8 @@ INSERT INTO bathrooms_building_floor (building_floor_id, bathroom_id) VALUES
 ,	(3, 1)	-- Male   STC 3st Floor
 ,	(3, 2);	-- Female STC 3st Floor
 
+
+
+
+ALTER TABLE bathrooms_building_floor MODIFY FOREIGN KEY (building_floor_id) REFERENCES building_floor(building_floor_id);
 
