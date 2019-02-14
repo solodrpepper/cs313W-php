@@ -88,7 +88,17 @@ INSERT INTO bathrooms_building_floor (building_floor_id, bathroom_id) VALUES
 ,	(3, 2);	-- Female STC 3st Floor
 
 
+-- For home page query
+SELECT bbf.building_floor_id      AS "Building Floor"
+    ,      bbf.bathroom_id        AS "Bathroom ID"
+    ,      b.building_name        As "Building Name"
+    ,      b.building_id          AS "Building ID"
+    FROM   bathrooms_building_floor  bbf
+    ,      buildings                 b
+    WHERE  bbf.building_floor_id = b.building_id
 
 
-ALTER TABLE bathrooms_building_floor MODIFY FOREIGN KEY (building_floor_id) REFERENCES building_floor(building_floor_id);
-
+        SELECT u.is_male 
+        ,      u.user_id
+        FROM users u
+        WHERE 
