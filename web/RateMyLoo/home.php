@@ -96,10 +96,16 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 </div>
             </div>\n";
 
-    if ($item_count % 2 == 0) {
+    if ($item_count % 2 != 0) {
         echo "</div>\n";
     }
+
     $item_count++;
+}
+
+// just in case it ended on an odd
+if ($item_count % 2 != 0) {
+    echo "</div>\n";
 }
 
 // end container div
