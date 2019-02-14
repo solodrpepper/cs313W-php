@@ -82,11 +82,11 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $floor = $row['building_floor_id'];
     $bathtoom = $row['bathroom_id'];
 
-    if ($item_count % 2 == 0) {
+    if ($item_count % 3 == 0) {
         echo "<div class='row'>\n";
     }
 
-    echo "<div class='col-sm-6'>
+    echo "<div class='col-sm-4'>
                 <div class='card'>
                     <div class='card-body'>
                         <h5 class='card-title'>Special title treatment</h5>
@@ -96,7 +96,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 </div>
             </div>\n";
 
-    if ($item_count % 2 != 0) {
+    if ($item_count % 3 != 0) {
         echo "</div>\n";
     }
 
@@ -104,7 +104,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 }
 
 // just in case it ended on an odd
-if ($item_count % 2 != 0) {
+if ($item_count % 3 != 0) {
     echo "</div>\n";
 }
 
