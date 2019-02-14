@@ -115,13 +115,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     required placeholder="******" type="password">
                             </div> <!-- form-group password// -->
                             <div class="form-group">
-                                <label>Sex</label><br/>
-                                <input class="form-check-inline" name='sex'
-                                <?php if ($is_male == true) {echo 'checked';}?>
-                                    required type='radio'> Male
-                                <input class="form-check-inline" name='sex'
-                                <?php if ($is_male == false) {echo 'checked';}?>
-                                    required type='radio'> Female
+                                <div class='row'>
+                                    <label>Sex</label><br />
+                                    <div class='col'>
+                                        <input class="form-check-inline" name='sex' <?php if ($is_male == true) {echo 'checked';}?>
+                                        required type='radio'>Male
+                                    </div> <!-- form-col// -->
+                                    <div class='col'>
+                                        <input class="form-check-inline" name='sex' <?php if ($is_male == false) {echo 'checked';}?>
+                                        required type='radio'>Female
+                                    </div> <!-- form-col// -->
+                                </div> <!-- form-row// -->
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Sign Up
