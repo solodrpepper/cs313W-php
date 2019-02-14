@@ -78,14 +78,13 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // name
     $floor = $row['building_floor_id'];
     $bathtoom = $row['bathroom_id'];
-    $temp_row = var_dump($row);
 
     echo "<div class='row'>
             <div class='col-sm-6'>
                 <div class='card'>
                     <div class='card-body'>
                         <h5 class='card-title'>Special title treatment</h5>
-                        <p class='card-text'> $temp_row </p>
+                        <p class='card-text'> $row </p>
                         <a href='#' class='btn btn-primary'>Go somewhere</a>
                     </div>
                 </div>
