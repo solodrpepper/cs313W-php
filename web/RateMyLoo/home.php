@@ -56,7 +56,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     <!-- Taken and adapted from TA in week 6 from 
          teacher solutio nand adapted to my project -->
 
-<?php
+    <?php
 $statement = $db->prepare(
    "SELECT bbf.building_floor_id  AS \"Building Floor\"
     ,      bbf.bathroom_id        AS \"Bathroom ID\"
@@ -75,6 +75,19 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $floor = $row['building_floor_id'];
     $bathtoom = $row['bathroom_id'];
     var_dump($row);
+
+    echo "<div class='row'>
+            <div class='col-sm-6'>
+                <div class='card'>
+                    <div class='card-body'>
+                        <h5 class='card-title'>Special title treatment</h5>
+                        <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
+                        <a href='#' class='btn btn-primary'>Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>";
+
 }
 ?>
 
