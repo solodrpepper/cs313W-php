@@ -73,7 +73,7 @@ $statement->execute();
 $item_count = 0;
 
 // start container div
-echo "<div>\n";
+echo "<div class='container'>\n";
 
 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // The variable "row" now holds the complete record for that
