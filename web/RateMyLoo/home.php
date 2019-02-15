@@ -58,14 +58,13 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 
 <?php
 $statement = $db->prepare(
-   "SELECT bbf.building_floor_id  AS \"Building Floor\"
-    ,      bbf.bathroom_id        AS \"Bathroom ID\"
-    ,      b.building_name        As \"Building Name\"
-    ,      b.building_id          AS \"Building ID\"
-    FROM   bathrooms_building_floor  bbf
-    ,      buildings                 b
-    WHERE  bbf.building_floor_id = b.building_id"
+   "SELECT b.building_name
+   ,       b.floor_value
+   FROM    users u
+   ,       bathrooms b
+   WHERE   u.is_male = b.is_mens"
 );
+
 $statement->execute();
 // Go through each result
 
@@ -79,8 +78,13 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // The variable "row" now holds the complete record for that
     // row, and we can access the different values based on their
     // name
-    $floor = $row['building_floor_id'];
-    $bathtoom = $row['bathroom_id'];
+    $floor_value = $row['floor_value'];
+    $building_name = $row['building_name'];
+    if ($is_male) {
+        $gender = 'Guys';
+    } else {
+        $gender = 'Gals';
+    }
 
     if ($item_count % 3 == 0) {
         echo "<div class='row'>\n";
@@ -90,7 +94,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 <div class='card'>
                     <div class='card-body'>
                         <h5 class='card-title'>Special title treatment</h5>
-                        <p class='card-text'> $floor </p>
+                        <p class='card-text'>$building_name $gender bathroom on the $floor_value</p>
                         <a href='#' class='btn btn-primary'>Go somewhere</a>
                     </div>
                 </div>

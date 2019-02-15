@@ -6,36 +6,17 @@ CREATE TABLE users (
    , is_male	 BOOLEAN		  NOT NULL
 );
 
-CREATE TABLE floors (
-    floor_id    SERIAL PRIMARY KEY
-,   floor_value INTEGER NOT NULL
-);
 
-CREATE TABLE buildings (
-     building_id     SERIAL PRIMARY KEY
-   , building_name   VARCHAR(25) NOT NULL
-);
-
+-- NEED TO EDIT THIS TABLE
 CREATE TABLE bathrooms (
-    bathroom_id SERIAL  PRIMARY KEY
-,	  is_mens     BOOLEAN
-);
-
-CREATE TABLE building_floor (
-    building_floor_id SERIAL PRIMARY KEY
-,   building_id       INTEGER REFERENCES buildings(building_id) NOT NULL
-,   floor_id          INTEGER REFERENCES floors(floor_id) NOT NULL
-);
-
-CREATE TABLE bathrooms_building_floor (
-	 bathrooms_building_floor_id 	SERIAL  PRIMARY KEY
-,  building_floor_id 			 	    INTEGER REFERENCES building_floor(building_floor_id)
-,	 bathroom_id  						    INTEGER REFERENCES bathrooms(bathroom_id)
+    bathroom_id     SERIAL  PRIMARY KEY
+,   building_name   VARCHAR(25) NOT NULL
+,   floor_value     INTEGER NOT NULL
+,	  is_mens         BOOLEAN
 );
 
 CREATE TABLE ratings (
      rating_id       SERIAL  PRIMARY KEY
-   , building_id     INTEGER REFERENCES buildings(building_id)
    , bathroom_id     INTEGER REFERENCES bathrooms(bathroom_id)
    , integrity_value INTEGER
    , overall_score   INTEGER NOT NULL
@@ -66,36 +47,35 @@ INSERT INTO buildings (building_name) VALUES
 , ('Taylor')
 , ('Austin');
 
--- Insert into the building_floor table
-INSERT INTO building_floor (building_id, floor_id) VALUES
-  (1, 2)  -- STC 1st floor
-, (1, 3)  -- STC 2nd floor
-, (1, 4); -- STC 3nd floor
 
--- Insert into the bathroom table (basiclly for whether it's male or female)
-INSERT INTO bathrooms (is_mens) VALUES
-	('TRUE')		-- Males 	restroom
-,	('FALSE');	-- Females 	restroom
+-- Insert into the bathroom table
+INSERT INTO bathrooms (is_mens, building_name, floor_value) VALUES
+	('TRUE',  'STC',    1)	 -- Males    restroom, STC,    1st floor
+,	('FALSE', 'STC',    1) 	 -- Females  restroom, STC,    1st floor
+, ('TRUE',  'STC',    2)   -- Males    restroom, STC,    2st floor
+, ('FALSE', 'STC',    2)   -- Females  restroom, STC,    2st floor
+, ('TRUE',  'STC',    3)   -- Males    restroom, STC,    3st floor
+, ('FALSE', 'STC',    3)   -- Females  restroom, STC,    3st floor
+, ('TRUE',  'Taylor', 1)   -- Males    restroom, Taylor, 1st floor
+, ('FALSE', 'Taylor', 1)   -- Females  restroom, Taylor, 1st floor
+, ('TRUE',  'Taylor', 2)   -- Males    restroom, Taylor, 2st floor
+, ('FALSE', 'Taylor', 2)   -- Females  restroom, Taylor, 2st floor
+, ('TRUE',  'Austin', 0)   -- Males    restroom, Austin, Basement
+, ('FALSE', 'Austin', 0)   -- Females  restroom, Austin, Basement
+, ('TRUE',  'Austin', 1)   -- Males    restroom, Austin, 1st floor
+, ('FALSE', 'Austin', 1)   -- Females  restroom, Austin, 1st floor
+, ('TRUE',  'Austin', 2)   -- Males    restroom, Austin, 2st floor
+, ('FALSE', 'Austin', 2);  -- Females  restroom, Austin, 2st floor
 
-
--- Insert into the building_floor table
-INSERT INTO bathrooms_building_floor (building_floor_id, bathroom_id) VALUES
-	(1, 1)	-- Male   STC 1st Floor
-,	(1, 2)	-- Female STC 1st Floor
-,	(2, 1)	-- Male   STC 2st Floor
-,	(2, 2)	-- Female STC 2st Floor
-,	(3, 1)	-- Male   STC 3st Floor
-,	(3, 2);	-- Female STC 3st Floor
 
 
 -- For home page query
-SELECT bbf.building_floor_id      AS "Building Floor"
-    ,      bbf.bathroom_id        AS "Bathroom ID"
-    ,      b.building_name        As "Building Name"
-    ,      b.building_id          AS "Building ID"
-    FROM   bathrooms_building_floor  bbf
-    ,      buildings                 b
-    WHERE  bbf.building_floor_id = b.building_id
+SELECT  b.building_name
+,       b.floor_value
+FROM    users u
+,       bathrooms b
+WHERE   u.is_male = b.is_mens;
+-- Will eventually include comments
 
 
 
@@ -106,12 +86,3 @@ SELECT bbf.building_floor_id      AS "Building Floor"
 
 
 
-
-
-
-
-
-
-
-
-    
