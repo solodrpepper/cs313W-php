@@ -98,7 +98,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     echo "<div class='col-sm-4'>
                 <div class='card'>
                     <div class='card-body'>
-                        <h5 class='card-title'>$building_name on the $floor_value</h5>
+                        <h5 class='card-title'>$building_name on the $floor_value floor</h5>
                         <p class='card-text'>Imma put the comments here!</p>
                         <a href='#' class='btn btn-primary'>Go somewhere</a>
                     </div>
