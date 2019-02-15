@@ -62,17 +62,17 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
         $statement = $db->prepare(
             "SELECT b.building_name
             ,       b.floor_value
-            FROM    bathrooms b"
-         );
+            FROM    users u
+            ,       bathrooms b
+            WHERE   u.is_male = b.is_mens"
+        );
     } else {
         // If the user is logged in then show gender specific bathrooms
         $statement = $db->prepare(
             "SELECT b.building_name
             ,       b.floor_value
-            FROM    users u
-            ,       bathrooms b
-            WHERE   u.is_male = b.is_mens"
-         );
+            FROM    bathrooms b"
+        );
     }
 
 $statement->execute();
