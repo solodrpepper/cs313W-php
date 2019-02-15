@@ -57,13 +57,23 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
          teacher solutio nand adapted to my project -->
 
 <?php
-$statement = $db->prepare(
-   "SELECT b.building_name
-   ,       b.floor_value
-   FROM    users u
-   ,       bathrooms b
-   WHERE   u.is_male = b.is_mens"
-);
+    if ($isLoggedIn) {
+        // If the user isn't logged in then show all bathrooms
+        $statement = $db->prepare(
+            "SELECT b.building_name
+            ,       b.floor_value
+            FROM    bathrooms b"
+         );
+    } else {
+        // If the user is logged in then show gender specific bathrooms
+        $statement = $db->prepare(
+            "SELECT b.building_name
+            ,       b.floor_value
+            FROM    users u
+            ,       bathrooms b
+            WHERE   u.is_male = b.is_mens"
+         );
+    }
 
 $statement->execute();
 // Go through each result
@@ -80,11 +90,6 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // name
     $floor_value = $row['floor_value'];
     $building_name = $row['building_name'];
-    if ($is_male) {
-        $gender = 'Guys';
-    } else {
-        $gender = 'Gals';
-    }
 
     if ($item_count % 3 == 0) {
         echo "<div class='row'>\n";
@@ -93,8 +98,8 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     echo "<div class='col-sm-4'>
                 <div class='card'>
                     <div class='card-body'>
-                        <h5 class='card-title'>Special title treatment</h5>
-                        <p class='card-text'>$building_name $gender bathroom on the $floor_value</p>
+                        <h5 class='card-title'>$building_name on the $floor_value</h5>
+                        <p class='card-text'>Imma put the comments here!</p>
                         <a href='#' class='btn btn-primary'>Go somewhere</a>
                     </div>
                 </div>
