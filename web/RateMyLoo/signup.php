@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
                                 <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br />
-                                <button type="button" class="btn btn-primary btn-block" name="signUpSubmit" onClick="checkIfPasswordsMatch()">
+                                <button type="button" class="btn btn-primary btn-block" name="signUpSubmit" onClick="submitForm()">
                                     Sign Up
                                 </button>
                             </div> <!-- form-group// -->
