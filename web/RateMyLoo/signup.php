@@ -27,7 +27,7 @@ $errorMessage = "";
     // DEBUGGING
     //////////////////////
 
-    echo "Just included some files and set some variables\n";
+    echo "Just included some files and set some variables<br />";
 
     ///////////////////////
     // DEBUGGING
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DEBUGGING
     //////////////////////
 
-    echo "Just grabbed the form data after submission and reload\n";
+    echo "Just grabbed the form data after submission and reload<br />";
 
     ///////////////////////
     // DEBUGGING
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DEBUGGING
     //////////////////////
 
-    echo "Tried to execute query to get all user emails\n";
+    echo "Tried to execute query to get all user emails<br />";
 
     ///////////////////////
     // DEBUGGING
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "result: ";
     var_dump($result);
-    echo "\n";
+    echo "<br />";
 
     ///////////////////////
     // DEBUGGING
@@ -90,6 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Send verification out to google before we continue
     if (array_key_exists('signUpSubmit', $_POST)) {
+
+        echo "Anyone there?<br>";
+
         $response_key = $_POST['g-recaptcha-response'];
         // build post query for google
         $g_verification = $google_captcha_url . '?secret=' . $secret_key . '&response=' . $response_key . '&remoteip=' . $_SERVER['REMOTE_ADDR'];
@@ -104,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         echo "Response: ";
         var_dump($response);
-        echo "\n";
+        echo "<br />";
 
         ///////////////////////
         // DEBUGGING
