@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DEBUGGING
     //////////////////////
 
-    echo $is_male;
+    print_r($is_male);
 
     ///////////////////////
     // DEBUGGING
