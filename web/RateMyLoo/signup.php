@@ -158,8 +158,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Check to see if the passwords match before we let them continue -->
     <script>
         function checkIfPasswordsMatch() {
-            password  = document.getElementById('password').value;
-            cPassword = document.getElementById('cpassword').value;
+            password  = document.getElementById('password_id').value;
+            cPassword = document.getElementById('cpassword_id').value;
             if (password === cPassword) {
                 document.getElementById('signUpSubmit').submit();
             } else {
@@ -194,12 +194,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div> <!-- form-group email// -->
                             <div class="form-group">
                                 <label>Your password</label>
-                                <INPUT class="form-control" name='password' value="<?php print $pword;?>"
+                                <INPUT class="form-control" name='password' id='password_id' value="<?php print $pword;?>"
                                     required placeholder="******" type="password">
                             </div> <!-- form-group password// -->
                             <div class="form-group">
                             <label>Confirm password</label>
-                                <INPUT class="form-control" name='cpassword'
+                                <INPUT class="form-control" name='cpassword' id='cpassword_id'
                                     required placeholder="******" type="password"> 
                                     <p id="passwordError" display="hidden"></p>
                             </div> <!-- form-group confirm password// -->
