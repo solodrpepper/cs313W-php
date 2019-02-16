@@ -7,6 +7,10 @@
 <?php
 // for PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require_once 'PHPMailer/Exception.php';
+require_once 'PHPMailer/PHPMailer.php';
  
 // for reCAPTCHA
 $site_key = "6LcY2ZEUAAAAALPbbE9ial1WhYyF1QGbJnfE8zyV";
@@ -33,11 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statement->bindParam(':email', $email);
 
     try {
-        if ($statement->execute()) {
-            echo "It worked!!<br>";
-        } else {
-            echo "It broke.. :(<br>";
-        }
+        $statement->execute();
     } catch (PDOException $ex) {
         echo 'Error!: ' . $ex->getMessage();
         die();
@@ -87,8 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $statement->execute();
     
                     // let's send an email to verify them before they have access
-                    require_once "PHPMailer/PHPMailer.php";
-
                     $mail = new PHPMailer();
                     $mail->setFrom('welcome@ratemyloo.com');
                     $mail->addAddress($email, $uname);
