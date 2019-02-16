@@ -5,6 +5,11 @@
      amazing foundation and outline
 -->
 <?php
+// for reCAPTCHA
+$site_key = "6LcY2ZEUAAAAALPbbE9ial1WhYyF1QGbJnfE8zyV";
+$secret_key = "6LcY2ZEUAAAAANv__0gVivf5NPJfLV-rgsYu6IGL";
+$google_captcha_url = "https://www.google.com/recaptcha/api/siteverify";
+
 $uname = "";
 $email = "";
 $pword = "";
@@ -35,29 +40,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if ($result['email'] == $email) {
-        $errorMessage = "Email already used";
-    } else {
-        // check to see if username is used
-        $statement = $db->prepare("SELECT username FROM users WHERE username = :username");
-        $statement->bindParam(':username', $uname);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        if ($result['username'] == $uname) {
-            $errorMessage = "Sorry, that username is already taken :(";
-        } else {
-            $phash = password_hash($pword, PASSWORD_DEFAULT);
-            $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (:email, :username, :hash_ed, :is_male)");
-            $statement->bindParam(':email', $email);
-            $statement->bindParam(':username', $uname);
-            $statement->bindParam(':hash_ed', $phash);
-            $statement->bindParam(':is_male', $is_male);
-            $statement->execute();
+    // Send verification out to google before we continue
+    if (array_key_exists('signUpSubmit', $_POST)) {
+        $response_key = $_POST['g-recaptcha-response'];
+        // build post query for google
+        $g_verification = $google_captcha_url . '?secret=' . $secret_key . '&response=' . $response_key . '&remoteip=' . $_SERVER['REMOTE_ADDR'];
+        // send off the response
+        $response = file_get_contents($g_verification);
+        // decode json response from google
+        $response = json_decode($response);
     
-            flush();
-            header("Location: login.php");
-            die();
+        if ($response->success == 1) {
+            if ($result['email'] == $email) {
+                $errorMessage = "Email already used";
+            } else {
+                // check to see if username is used
+                $statement = $db->prepare("SELECT username FROM users WHERE username = :username");
+                $statement->bindParam(':username', $uname);
+                $statement->execute();
+                $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+                if ($result['username'] == $uname) {
+                    $errorMessage = "Sorry, that username is already taken :(";
+                } else {
+                    $phash = password_hash($pword, PASSWORD_DEFAULT);
+                    $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (:email, :username, :hash_ed, :is_male)");
+                    $statement->bindParam(':email', $email);
+                    $statement->bindParam(':username', $uname);
+                    $statement->bindParam(':hash_ed', $phash);
+                    $statement->bindParam(':is_male', $is_male);
+                    $statement->execute();
+    
+                    flush();
+                    header("Location: login.php");
+                    die();
+                }
+            }
+        } else {
+            $errorMessage = "Make sure you verify that you're not a robot!";
         }
     }
 }
@@ -91,11 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- This is for the reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-        function onSubmit(token) {
-            document.getElementById("sign_up_form").submit();
-        }
-    </script>
 
     <title>Rate My Loo - Sign Up</title>
 </head>
@@ -138,8 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div> <!-- form-row// -->
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
-                                <button type="submit" class="g-recaptcha btn btn-primary btn-block" name="loginSubmit"
-                                    data-sitekey="6Lcci5EUAAAAALz2U2zB-oNqZN58C8Pjar5D_XPc" data-callback='onSubmit'>
+                                <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div>
+                                <button type="submit" class="btn btn-primary btn-block" name="signUpSubmit"
+                                        data-callback='onSubmit'>
                                     Sign Up
                                 </button>
                             </div> <!-- form-group// -->
