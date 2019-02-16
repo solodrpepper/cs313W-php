@@ -89,6 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
+    <!-- This is for the reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("sign_up_form").submit();
+        }
+    </script>
+
     <title>Rate My Loo - Sign Up</title>
 </head>
 
@@ -100,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="card">
                     <article class="card-body">
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
-                        <form NAME="signUpForm" METHOD="POST" ACTION="signup.php">
+                        <form NAME="signUpForm" METHOD="POST" ACTION="signup.php" id="sign_up_form">
                             <div class="form-group">
                                 <label>Your Username</label>
                                 <input class="form-control" name='username' placeholder="Username" type="text" value="<?php print $uname;?>"
@@ -130,7 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div> <!-- form-row// -->
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" name="loginSubmit"> Sign Up
+                                <button type="submit" class="g-recaptcha btn btn-primary btn-block" name="loginSubmit"
+                                    data-sitekey="6Lcci5EUAAAAALz2U2zB-oNqZN58C8Pjar5D_XPc" data-callback='onSubmit'>
+                                    Sign Up
                                 </button>
                             </div> <!-- form-group// -->
                         </form>
