@@ -45,6 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $result = $statement->fetch(PDO::FETCH_ASSOC);
 
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
+
+    echo "<script>console.log('" . var_dump($result) . "')</script>";
+
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
+
     // Send verification out to google before we continue
     if (array_key_exists('signUpSubmit', $_POST)) {
         $response_key = $_POST['g-recaptcha-response'];
