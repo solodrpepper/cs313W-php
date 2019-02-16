@@ -113,10 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     } else {
                         $verify = 'Sorry, I think a pipe got clogged... Try again? ;)';
                     }
-
-                    flush();
-                    header("Location: login.php");
-                    die();
                 }
             }
         } else {
@@ -161,13 +157,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             password  = document.getElementById('password_id').value;
             cPassword = document.getElementById('cpassword_id').value;
             if (password === cPassword) {
-                document.getElementById('sign_up_form').submit();
+                // Clear the error if there is one
+                document.getElementById('passwordError').style.visibility = "hidden";
+                document.getElementById('passwordError').innerHTML = "";
+                
+                // then submit
+                return true;
             } else {
                 document.getElementById('passwordError').style.visibility = "visible";
                 document.getElementById('passwordError').innerHTML = "Sorry, your passwords don't match";
-                document.getElementById('passwordError').focus();
+                document.getElementById('cpassword_id').value = '';
+                document.getElementById('cpassword_id').focus();
+                return false;
             }
         }
+
+        function submitForm() {
+            if (checkIfPasswordsMatch()) {
+                document.getElementById('sign_up_form').submit();
+            } else {
+                // Do squat
+            }
+        }
+
+
     </script>
 
     <title>Rate My Loo - Sign Up</title>
@@ -179,6 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="row justify-content-md-center">
             <div class="col-lg-4">
                 <div class="card">
+                    <?php echo $verify;?>
                     <article class="card-body">
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
                         <form NAME="signUpForm" METHOD="POST" ACTION="signup.php" id="sign_up_form">
@@ -200,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="form-group">
                                 <label>Confirm password</label>
                                 <INPUT class="form-control" name='cpassword' id='cpassword_id' required placeholder="******"
-                                    type="password">
+                                    type="password" onChange="checkIfPasswordsMatch()">
                                 <p id="passwordError" style="visibility: hidden"></p>
                             </div> <!-- form-group confirm password// -->
                             <div class="form-group">
@@ -233,7 +247,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div> <!-- col.// -->
     </div>
     <?php print $errorMessage;?>
-    <?php print $verify;?>
 </body>
 
 </html>
