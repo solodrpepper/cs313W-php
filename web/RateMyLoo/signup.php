@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div> <!-- form-row// -->
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div>
+                                <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br />
                                 <button type="submit" class="btn btn-primary btn-block" name="signUpSubmit"
                                         data-callback='onSubmit'>
                                     Sign Up
