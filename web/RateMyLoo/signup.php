@@ -207,11 +207,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <label>Sex</label><br />
                                 <div class='row'>
                                     <div class='col'>
-                                        <input class="form-check-inline" name='sex' <?php if ($is_male == true) {echo 'checked';}?>
+                                        <input class="form-check-inline" name='sex' value='1' <?php if ($is_male == true) {echo 'checked';}?>
                                         required type='radio'>Male
                                     </div> <!-- form-col// -->
                                     <div class='col'>
-                                        <input class="form-check-inline" name='sex' <?php if ($is_male == false) {echo 'checked';}?>
+                                        <input class="form-check-inline" name='sex' value='0' <?php if ($is_male == false) {echo 'checked';}?>
                                         required type='radio'>Female
                                     </div> <!-- form-col// -->
                                 </div> <!-- form-row// -->
