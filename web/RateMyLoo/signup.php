@@ -163,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password === cPassword) {
                 document.getElementById('signUpSubmit').submit();
             } else {
-                document.getElementById('passwordError').display = visable;
+                document.getElementById('passwordError').style.visibility = visible;
                 document.getElementById('passwordError').innerHTML = "Sorry, your passwords don't match";
                 document.getElementById('passwordError').focus();
             }
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label>Confirm password</label>
                                 <INPUT class="form-control" name='cpassword' id='cpassword_id'
                                     required placeholder="******" type="password"> 
-                                    <p id="passwordError" display="hidden"></p>
+                                    <p id="passwordError" style="visibility: hidden"></p>
                             </div> <!-- form-group confirm password// -->
                             <div class="form-group">
                                 <label>Sex</label><br />
