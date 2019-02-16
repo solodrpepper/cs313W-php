@@ -27,7 +27,7 @@ $errorMessage = "";
     // DEBUGGING
     //////////////////////
 
-    echo "Just included some files and set some variables";
+    echo "Just included some files and set some variables\n";
 
     ///////////////////////
     // DEBUGGING
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DEBUGGING
     //////////////////////
 
-    echo "Just grabbed the form data after submission and reload";
+    echo "Just grabbed the form data after submission and reload\n";
 
     ///////////////////////
     // DEBUGGING
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DEBUGGING
     //////////////////////
 
-    echo "Tried to execute query to get all user emails";
+    echo "Tried to execute query to get all user emails\n";
 
     ///////////////////////
     // DEBUGGING
@@ -80,7 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DEBUGGING
     //////////////////////
 
+    echo "result: ";
     var_dump($result);
+    echo "\n";
 
     ///////////////////////
     // DEBUGGING
@@ -100,7 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // DEBUGGING
         //////////////////////
 
+        echo "Response: ";
         var_dump($response);
+        echo "\n";
 
         ///////////////////////
         // DEBUGGING
