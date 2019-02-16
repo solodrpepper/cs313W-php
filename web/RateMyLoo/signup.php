@@ -149,7 +149,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Check to see if the passwords match before we let them continue -->
     <script>
-        function checkIfPasswordsMatch(password, cPassword) {
+        function checkIfPasswordsMatch() {
+            password  = document.getElementById('password').value;
+            cPassword = document.getElementById('cpassword').value;
             if (password === cPassword) {
                 document.getElementById('signUpSubmit').submit();
             } else {
@@ -171,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="card">
                     <article class="card-body">
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
-                        <form NAME="signUpForm" METHOD="POST" ACTION="checkIfPasswordsMatch();" id="sign_up_form">
+                        <form NAME="signUpForm" METHOD="POST" ACTION="signup.php" id="sign_up_form">
                             <div class="form-group">
                                 <label>Your Username</label>
                                 <input class="form-control" name='username' placeholder="Username" type="text" value="<?php print $uname;?>"
@@ -208,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
                                 <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br />
-                                <button type="submit" class="btn btn-primary btn-block" name="signUpSubmit">
+                                <button type="submit" class="btn btn-primary btn-block" name="signUpSubmit" onSubmit="checkIfPasswordsMatch()">
                                     Sign Up
                                 </button>
                             </div> <!-- form-group// -->
