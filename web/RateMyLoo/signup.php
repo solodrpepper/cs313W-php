@@ -89,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //////////////////////
 
     // Send verification out to google before we continue
-    if (array_key_exists('signUpSubmit', $_POST)) {
+    if (array_key_exists('sex', $_POST)) {
 
-        echo "Anyone there?<br>";
+        echo "Anyone there?<br />";
 
         $response_key = $_POST['g-recaptcha-response'];
         // build post query for google
