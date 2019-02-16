@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             password  = document.getElementById('password_id').value;
             cPassword = document.getElementById('cpassword_id').value;
             if (password === cPassword) {
-                document.getElementById('signUpSubmit').submit();
+                document.getElementById('sign_up_form').submit();
             } else {
                 document.getElementById('passwordError').style.visibility = "visible";
                 document.getElementById('passwordError').innerHTML = "Sorry, your passwords don't match";
