@@ -90,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Send verification out to google before we continue
     if (array_key_exists('sex', $_POST)) {
-
         echo "Anyone there?<br />";
 
         $response_key = $_POST['g-recaptcha-response'];
@@ -127,6 +126,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $errorMessage = "Sorry, that username is already taken :(";
                 } else {
 
+
+                    ///////////////////////
+                    // DEBUGGING
+                    //////////////////////
+
+                    echo "Did we successfully verify a new account?";
+                    echo "<br />";
+
+                    ///////////////////////
+                    // DEBUGGING
+                    //////////////////////
+
+
                     // Let's create a token for the user
                     $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0987654321!$()*';
                     $token = str_shuffle($token);
@@ -144,9 +156,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $statement->bindParam(':token', $token);
                     $statement->execute();
     
+
+                    ///////////////////////
+                    // DEBUGGING
+                    //////////////////////
+
+                    echo "Did we successfully enter them into the database??";
+                    echo "<br />";
+
+                    ///////////////////////
+                    // DEBUGGING
+                    //////////////////////
+
+
                     // let's send an email to verify them before they have access
                     $mail = new PHPMailer();
-                    $mail->setFrom('welcome@ratemyloo.com');
+                    $mail->setFrom('austinkincade995@gmail.com');
                     $mail->addAddress($email, $uname);
                     $mail->Subject('Please verify your email');
                     $mail->isHTML(true);
@@ -240,7 +265,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="row justify-content-md-center">
             <div class="col-lg-4">
                 <div class="card">
-                    <?php echo $verify;?>
+                    <p><?php echo $verify;?>
+                    </p>
+
                     <article class="card-body">
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
                         <form NAME="signUpForm" METHOD="POST" ACTION="signup.php" id="sign_up_form">
