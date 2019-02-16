@@ -33,16 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $token            = $_POST['token'];
     $is_male          = $_POST['sex'];
 
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
-    echo "<script>console.log('$is_male')</script>";
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
     $statement = $db->prepare("SELECT email FROM users WHERE email = :email");
     $statement->bindParam(':email', $email);
 
@@ -64,6 +54,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = file_get_contents($g_verification);
         // decode json response from google
         $response = json_decode($response);
+
+        ///////////////////////
+        // DEBUGGING
+        //////////////////////
+
+        echo "<script>console.log('$response')</script>";
+
+        ///////////////////////
+        // DEBUGGING
+        //////////////////////
     
         if ($response->success == 1) {
             if ($result['email'] == $email) {
@@ -88,12 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $phash = password_hash($pword, PASSWORD_DEFAULT);
                     $statement = $db->prepare("INSERT INTO users (email,  username,  hash_ed,  is_male, isEmailConfirmed, token) 
                                                          VALUES (:email, :username, :hash_ed, :is_male, 0,               :token)");
-                    $statement->bindParam(':email',    $email);
+                    $statement->bindParam(':email', $email);
                     $statement->bindParam(':username', $uname);
-                    $statement->bindParam(':hash_ed',  $phash);
-                    $statement->bindParam(':is_male',  $is_male);
+                    $statement->bindParam(':hash_ed', $phash);
+                    $statement->bindParam(':is_male', $is_male);
                     //$statement->bindParam(':isEmailConfirmed', 0);
-                    $statement->bindParam(':token',    $token);
+                    $statement->bindParam(':token', $token);
                     $statement->execute();
     
                     // let's send an email to verify them before they have access
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($mail->send()) {
                         $verify = 'Check your inbox to verify your email and finish registering!';
                     } else {
-                        $verify = 'Sorry, I think a pipe got clogged... Try again? ;)'; 
+                        $verify = 'Sorry, I think a pipe got clogged... Try again? ;)';
                     }
 
                     flush();
@@ -198,20 +198,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     required placeholder="******" type="password">
                             </div> <!-- form-group password// -->
                             <div class="form-group">
-                            <label>Confirm password</label>
-                                <INPUT class="form-control" name='cpassword' id='cpassword_id'
-                                    required placeholder="******" type="password"> 
-                                    <p id="passwordError" style="visibility: hidden"></p>
+                                <label>Confirm password</label>
+                                <INPUT class="form-control" name='cpassword' id='cpassword_id' required placeholder="******"
+                                    type="password">
+                                <p id="passwordError" style="visibility: hidden"></p>
                             </div> <!-- form-group confirm password// -->
                             <div class="form-group">
                                 <label>Sex</label><br />
                                 <div class='row'>
                                     <div class='col'>
-                                        <input class="form-check-inline" name='sex' value='1' <?php if ($is_male == true) {echo 'checked';}?>
+                                        <input class="form-check-inline" name='sex' value='1' <?php if ($is_male == true) {
+    echo 'checked';
+}?>
                                         required type='radio'>Male
                                     </div> <!-- form-col// -->
                                     <div class='col'>
-                                        <input class="form-check-inline" name='sex' value='0' <?php if ($is_male == false) {echo 'checked';}?>
+                                        <input class="form-check-inline" name='sex' value='0' <?php if ($is_male == false) {
+    echo 'checked';
+}?>
                                         required type='radio'>Female
                                     </div> <!-- form-col// -->
                                 </div> <!-- form-row// -->
