@@ -5,6 +5,9 @@
      amazing foundation and outline
 -->
 <?php
+// for PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+ 
 // for reCAPTCHA
 $site_key = "6LcY2ZEUAAAAALPbbE9ial1WhYyF1QGbJnfE8zyV";
 $secret_key = "6LcY2ZEUAAAAANv__0gVivf5NPJfLV-rgsYu6IGL";
@@ -19,10 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once 'db_connect.php';
     $db = get_db();
 
-    $uname   = $_POST['username'];
-    $email   = $_POST['email'];
-    $pword   = $_POST['hash_ed'];
-    $is_male = $_POST['is_male'];
+    $uname            = $_POST['username'];
+    $email            = $_POST['email'];
+    $pword            = $_POST['hash_ed'];
+    $isEmailConfirmed = $_POST['isEmailConfirmed'];
+    $token            = $_POST['token'];
+    $is_male          = $_POST['is_male'];
 
     $statement = $db->prepare("SELECT email FROM users WHERE email = :email");
     $statement->bindParam(':email', $email);
@@ -63,14 +68,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($result['username'] == $uname) {
                     $errorMessage = "Sorry, that username is already taken :(";
                 } else {
+
+                    // Let's create a token for the user
+                    $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0987654321!$()*';
+                    $token = str_shuffle($token);
+                    $token = substr($token, 0, 10);
+
+                    // Let's hash the password so we can send the hash to the database
                     $phash = password_hash($pword, PASSWORD_DEFAULT);
-                    $statement = $db->prepare("INSERT INTO users (email, username, hash_ed) VALUES (:email, :username, :hash_ed, :is_male)");
+                    $statement = $db->prepare("INSERT INTO users (email, username, hash_ed, isEmailConfirmed, token) 
+                                                VALUES (:email, :username, :hash_ed, :is_male, :isEmailConfirmed, :token)");
                     $statement->bindParam(':email', $email);
                     $statement->bindParam(':username', $uname);
                     $statement->bindParam(':hash_ed', $phash);
                     $statement->bindParam(':is_male', $is_male);
+                    $statement->bindParam(':isEmailConfirmed', 0);
+                    $statement->bindParam(':token', $token);
                     $statement->execute();
     
+                    // let's send an email to verify them before they have access
+                    require_once "PHPMailer/PHPMailer.php";
+
+                    $mail = new PHPMailer();
+                    $mail->setFrom('welcome@ratemyloo.com');
+                    $mail->addAddress($email, $uname);
+                    $mail->Subject('Please verify your email');
+                    $mail->isHTML(true);
+                    $mail->Body = "
+                        Please click on the link below to verify your email and get rating!<br /><br />
+
+                        <a href='https://morning-citadel-97793.herokuapp.com/RateMyLoo/confirmEmail.php?email=$email&token=$token'>Verify</a>
+                    ";
+
+                    if ($mail->send()) {
+                        $verify = 'Check your inbox to verify your email and finish registering!';
+                    } else {
+                        $verify = 'Sorry, I think a pipe got clogged... Try again? ;)'; 
+                    }
+
                     flush();
                     header("Location: login.php");
                     die();
@@ -184,6 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div> <!-- col.// -->
     </div>
     <?php print $errorMessage;?>
+    <?php print $verify;?>
 </body>
 
 </html>
