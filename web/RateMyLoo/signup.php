@@ -22,6 +22,18 @@ $email = "";
 $pword = "";
 $errorMessage = "";
 
+
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
+
+    echo "Just included some files and set some variables";
+
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once 'db_connect.php';
     $db = get_db();
@@ -29,9 +41,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $uname            = $_POST['username'];
     $email            = $_POST['email'];
     $pword            = $_POST['hash_ed'];
-    $isEmailConfirmed = $_POST['isEmailConfirmed'];
-    $token            = $_POST['token'];
     $is_male          = $_POST['sex'];
+
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
+
+    echo "Just grabbed the form data after submission and reload";
+
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
 
     $statement = $db->prepare("SELECT email FROM users WHERE email = :email");
     $statement->bindParam(':email', $email);
@@ -42,6 +62,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo 'Error!: ' . $ex->getMessage();
         die();
     }
+
+
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
+
+    echo "Tried to execute query to get all user emails";
+
+    ///////////////////////
+    // DEBUGGING
+    //////////////////////
 
     $result = $statement->fetch(PDO::FETCH_ASSOC);
 
