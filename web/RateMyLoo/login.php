@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['login'] = '';
             }
         } else {
-            $errorMessage = "Login Failed";
+            $errorMessage = "That login info doesn't match any of our records";
         }
     }
 }

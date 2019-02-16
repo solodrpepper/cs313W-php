@@ -112,6 +112,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- This is for the reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+    <!-- Check to see if the passwords match before we let them continue -->
+    <script>
+        function checkIfPasswordsMatch(password, cPassword) {
+            if (password === cPassword) {
+                document.getElementById('signUpSubmit').submit();
+            } else {
+                document.getElementById('passwordError').display = visable;
+                document.getElementById('passwordError').innerHTML = "Sorry, your passwords don't match";
+                document.getElementById('passwordError').focus();
+            }
+        }
+    </script>
+
     <title>Rate My Loo - Sign Up</title>
 </head>
 
@@ -123,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="card">
                     <article class="card-body">
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
-                        <form NAME="signUpForm" METHOD="POST" ACTION="signup.php" id="sign_up_form">
+                        <form NAME="signUpForm" METHOD="POST" ACTION="checkIfPasswordsMatch();" id="sign_up_form">
                             <div class="form-group">
                                 <label>Your Username</label>
                                 <input class="form-control" name='username' placeholder="Username" type="text" value="<?php print $uname;?>"
@@ -140,6 +153,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     required placeholder="******" type="password">
                             </div> <!-- form-group password// -->
                             <div class="form-group">
+                            <label>Confirm password</label>
+                                <INPUT class="form-control" name='cpassword'
+                                    required placeholder="******" type="password"> 
+                                    <p id="passwordError" display="hidden"></p>
+                            </div> <!-- form-group confirm password// -->
+                            <div class="form-group">
                                 <label>Sex</label><br />
                                 <div class='row'>
                                     <div class='col'>
@@ -154,8 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div> <!-- form-group sex// -->
                             <div class="form-group">
                                 <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br />
-                                <button type="submit" class="btn btn-primary btn-block" name="signUpSubmit"
-                                        data-callback='onSubmit'>
+                                <button type="submit" class="btn btn-primary btn-block" name="signUpSubmit">
                                     Sign Up
                                 </button>
                             </div> <!-- form-group// -->

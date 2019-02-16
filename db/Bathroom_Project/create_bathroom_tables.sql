@@ -1,9 +1,11 @@
 CREATE TABLE users (
-     user_id   SERIAL PRIMARY KEY
-   , username  VARCHAR(16)  NOT NULL
-   , email     VARCHAR(64)  NOT NULL
-   , hash      VARCHAR(255) NOT NULL
-   , is_male	 BOOLEAN		  NOT NULL
+    user_id          SERIAL   PRIMARY KEY
+,   username         VARCHAR(16)  NOT NULL
+,   email            VARCHAR(64)  NOT NULL
+,   hash             VARCHAR(255) NOT NULL
+,   isEmailConfirmed SMALLINT
+,   token            VARCHAR(10)  NOT NULL
+,   is_male	         BOOLEAN		  NOT NULL
 );
 
 
