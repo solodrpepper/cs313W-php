@@ -31,13 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pword            = $_POST['hash_ed'];
     $isEmailConfirmed = $_POST['isEmailConfirmed'];
     $token            = $_POST['token'];
-    $is_male          = $_POST['is_male'];
+    $is_male          = $_POST['sex'];
 
     ///////////////////////
     // DEBUGGING
     //////////////////////
 
-    print_r($is_male);
+    echo "<script>console.log('$is_male')</script>";
 
     ///////////////////////
     // DEBUGGING
