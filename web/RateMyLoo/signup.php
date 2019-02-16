@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DEBUGGING
     //////////////////////
 
-    echo "<script>console.log('" . var_dump($result) . "')</script>";
+    var_dump($result);
 
     ///////////////////////
     // DEBUGGING
