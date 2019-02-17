@@ -185,6 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $verify = 'Check your inbox to verify your email and finish registering!';
                     } else {
                         $verify = 'Sorry, I think a pipe got clogged... Try again? ;)';
+                        echo "$verify<br />";
                     }
                 }
             }
