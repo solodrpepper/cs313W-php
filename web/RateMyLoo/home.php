@@ -62,6 +62,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
         $statement = $db->prepare(
             "SELECT b.building_name
             ,       b.floor_value
+            ,       b.bathroom_id
             ,       u.username
             ,       r.comment
             FROM    users u INNER JOIN ratings   r ON r.user_id = u.user_id
@@ -97,6 +98,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $uname = $row['username'];
     $building_name = $row['building_name'];
     $comment = $row['comment'];
+    $bathroom_id = $row['bathroom_id'];
 
     if ($item_count % 3 == 0) {
         echo "<div class='row'>\n";
@@ -107,7 +109,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                     <div class='card-body'>
                         <h5 class='card-title'>$building_name on the $floor_value floor</h5>
                         <p class='card-text'>$comment <br />- $uname</p>
-                        <a href='#' class='btn btn-primary'>Sniff it Out!</a>
+                        <a href='bathroom_detail.php?bathroom_id=$bathroom_id' class='btn btn-primary'>Sniff it Out!</a>
                     </div>
                 </div>
             </div>\n";

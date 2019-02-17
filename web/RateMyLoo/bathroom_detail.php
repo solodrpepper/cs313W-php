@@ -1,6 +1,22 @@
 <?php
 require_once 'db_connect.php';
 $db = get_db();
+// Grab the bathroom id that they clicked on
+$bathroom_id = htmlspecialchars($_GET['bathroom_id']);
+
+
+$statement = $db->prepare(
+    "SELECT b.building_name
+    ,       b.floor_value
+    ,       u.username
+    ,       r.comment
+    FROM    users u INNER JOIN ratings   r ON r.user_id = u.user_id
+                    INNER JOIN bathrooms b ON r.bathroom_id = b.:bathroom_id"
+);
+
+$statement->bindParam(':bathroom_id', $bathroom_id);
+$statement->execute();
+
 
 ?>
 
@@ -36,6 +52,20 @@ $db = get_db();
 
 <body>
     <?php require 'nav.php';?>
+
+    <div class='container'>
+        <!-- Picture here -->
+        <?php
+            $floor_value = $row['floor_value'];
+            $building_name = $row['building_name'];
+
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+            $comment = $row['comment'];
+            $uname = $row['username'];
+        ?>
+
+    </div>
+
 </body>
 
 </html>
