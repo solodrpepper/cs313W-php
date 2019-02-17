@@ -73,10 +73,10 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
         $statement = $db->prepare(
             "SELECT b.building_name
             ,       b.floor_value
-            ,       b.bathroom_id
+            ,       u.username
             ,       r.comment
-            FROM    bathrooms b INNER JOIN 
-                    ratings   r ON r.bathroom_id = b.bathroom_id"
+            FROM    users u INNER JOIN ratings   r ON r.user_id = u.user_id
+                            INNER JOIN bathrooms b ON r.bathroom_id = b.bathroom_id"
         );
     }
 
