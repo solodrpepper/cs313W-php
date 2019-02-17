@@ -58,20 +58,25 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 
 <?php
     if ($isLoggedIn) {
-        // If the user isn't logged in then show all bathrooms
-        $statement = $db->prepare(
-            "SELECT b.building_name
-            ,       b.floor_value
-            FROM    users u
-            ,       bathrooms b
-            WHERE   u.is_male = b.is_mens"
-        );
-    } else {
         // If the user is logged in then show gender specific bathrooms
         $statement = $db->prepare(
             "SELECT b.building_name
             ,       b.floor_value
-            FROM    bathrooms b"
+            ,       u.username
+            ,       r.comment
+            FROM    users u INNER JOIN ratings   r ON r.user_id = u.user_id
+                            INNER JOIN bathrooms b ON r.bathroom_id = b.bathroom_id
+            WHERE   u.is_male = b.is_mens"
+        );
+    } else {
+        // If the user isn't logged in then show all bathrooms
+        $statement = $db->prepare(
+            "SELECT b.building_name
+            ,       b.floor_value
+            ,       b.bathroom_id
+            ,       r.comment
+            FROM    bathrooms b INNER JOIN 
+                    ratings   r ON r.bathroom_id = b.bathroom_id"
         );
     }
 
@@ -90,6 +95,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     // name
     $floor_value = $row['floor_value'];
     $building_name = $row['building_name'];
+    $comment = $row['comment'];
 
     if ($item_count % 3 == 0) {
         echo "<div class='row'>\n";
@@ -99,8 +105,8 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 <div class='card'>
                     <div class='card-body'>
                         <h5 class='card-title'>$building_name on the $floor_value floor</h5>
-                        <p class='card-text'>Imma put the comments here!</p>
-                        <a href='#' class='btn btn-primary'>Go somewhere</a>
+                        <p class='card-text'>$comment</p>
+                        <a href='#' class='btn btn-primary'>Sniff it Out!</a>
                     </div>
                 </div>
             </div>\n";

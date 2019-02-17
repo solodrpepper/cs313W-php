@@ -3,8 +3,6 @@ CREATE TABLE users (
 ,   username         VARCHAR(16)  NOT NULL
 ,   email            VARCHAR(64)  NOT NULL
 ,   hash             VARCHAR(255) NOT NULL
-,   isEmailConfirmed SMALLINT
-,   token            VARCHAR(10)  NOT NULL
 ,   is_male	         BOOLEAN		  NOT NULL
 );
 
@@ -20,6 +18,7 @@ CREATE TABLE bathrooms (
 CREATE TABLE ratings (
      rating_id       SERIAL  PRIMARY KEY
    , bathroom_id     INTEGER REFERENCES bathrooms(bathroom_id)
+   , user_id         INTEGER REFERENCES users(user_id)
    , integrity_value INTEGER
    , overall_score   INTEGER NOT NULL
      CHECK (overall_score >= 0 AND overall_score <= 5)
@@ -32,6 +31,7 @@ CREATE TABLE ratings (
    , stocked         BOOLEAN 
    , broken          BOOLEAN
    , single_stall    BOOLEAN
+   , comment         TEXT
 );
 
 -- Insert into the floors table
@@ -71,14 +71,10 @@ INSERT INTO bathrooms (is_mens, building_name, floor_value) VALUES
 
 
 
--- For home page query
-SELECT  b.building_name
-,       b.floor_value
-FROM    users u
-,       bathrooms b
-WHERE   u.is_male = b.is_mens;
--- Will eventually include comments
-
+-- Insert into the bathroom comments so I have some stuff to see.
+INSERT INTO ratings (bathroom_id, user_id, overall_score, cleanliness, traffic, echo_value, comment) VALUES
+  (1,   1, 5, 5, 2, 3, 'This is definitely my favorite bathroom in the STC! I will say though, it has gotten a lot more traffic this semester... definitely a disappointment :/')
+, (11, 43, 3, 4, 2, 2, 'This bathroom is nice because you get it all to yourself!! :D');
 
 
 
