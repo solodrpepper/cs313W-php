@@ -4,17 +4,22 @@ $db = get_db();
 // Grab the bathroom id that they clicked on
 $bathroom_id = htmlspecialchars($_GET['bathroom_id']);
 
+$statement = $db->prepare('SELECT building_name, floor_value FROM bathrooms WHERE bathroom_id = :bid');
+$statement->bindParam(':bid', $bathroom_id);
+$statement->execute();
+$result = $statement->fetch(PDO::FETCH_ASSOC);
+$building_name = $result['building_name'];
+$floor_value   = $result['floor_value'];
 
 $statement = $db->prepare(
-    "SELECT b.building_name
-    ,       b.floor_value
-    ,       u.username
+    "SELECT u.username
     ,       r.comment
-    FROM    users u INNER JOIN ratings   r ON r.user_id = u.user_id
-                    INNER JOIN bathrooms b ON r.bathroom_id = b.:bathroom_id"
+    FROM    user u
+    ,       bathrooms b  INNER JOIN ratings r ON r.user_id = u.user_id       
+    WHERE   b.bathroom_id = :bid"
 );
 
-$statement->bindParam(':bathroom_id', $bathroom_id);
+$statement->bindParam(':bid', $bathroom_id);
 $statement->execute();
 
 
@@ -56,12 +61,15 @@ $statement->execute();
     <div class='container'>
         <!-- Picture here -->
         <?php
+            
+
             $floor_value = $row['floor_value'];
             $building_name = $row['building_name'];
 
-            while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-            $comment = $row['comment'];
-            $uname = $row['username'];
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $comment = $row['comment'];
+                $uname = $row['username'];
+            }
         ?>
 
     </div>
