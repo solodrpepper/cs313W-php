@@ -11,6 +11,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
 $building_name = $result['building_name'];
 $floor_value   = $result['floor_value'];
 
+
 $statement = $db->prepare(
     "SELECT u.username
     ,       r.comment
