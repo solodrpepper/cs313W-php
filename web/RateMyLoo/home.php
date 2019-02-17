@@ -106,7 +106,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 <div class='card'>
                     <div class='card-body'>
                         <h5 class='card-title'>$building_name on the $floor_value floor</h5>
-                        <p class='card-text'>$comment -- $uname</p>
+                        <p class='card-text'>$comment <br />- $uname</p>
                         <a href='#' class='btn btn-primary'>Sniff it Out!</a>
                     </div>
                 </div>
