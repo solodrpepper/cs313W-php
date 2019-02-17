@@ -38,8 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Send verification out to google before we continue
     if (array_key_exists('sex', $_POST)) {
-        echo "Anyone there?<br />";
-
         $response_key = $_POST['g-recaptcha-response'];
         // build post query for google
         $g_verification = $google_captcha_url . '?secret=' . $secret_key . '&response=' . $response_key . '&remoteip=' . $_SERVER['REMOTE_ADDR'];
