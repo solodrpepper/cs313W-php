@@ -77,6 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     //$statement->bindParam(':isEmailConfirmed', 0);
                     $statement->bindParam(':token', $token);
                     $statement->execute();
+
+                    flush();
+                    header('Location: thanks.php');
+                    die();
                 }
             }
         } else {
