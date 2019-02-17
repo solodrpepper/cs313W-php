@@ -5,16 +5,7 @@
      amazing foundation and outline
 -->
 <?php
-// for PHPMailer
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'vendor/autoload.php';
-
-require_once 'PHPMailer/Exception.php';
-require_once 'PHPMailer/PHPMailer.php';
- 
-// for reCAPTCHA
+ // for reCAPTCHA
 $site_key = "6LcY2ZEUAAAAALPbbE9ial1WhYyF1QGbJnfE8zyV";
 $secret_key = "6LcY2ZEUAAAAANv__0gVivf5NPJfLV-rgsYu6IGL";
 $google_captcha_url = "https://www.google.com/recaptcha/api/siteverify";
@@ -24,18 +15,6 @@ $email = "";
 $pword = "";
 $errorMessage = "";
 
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
-    echo "Just included some files and set some variables<br />";
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once 'db_connect.php';
     $db = get_db();
@@ -44,16 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email            = $_POST['email'];
     $pword            = $_POST['hash_ed'];
     $is_male          = $_POST['sex'];
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
-    echo "Just grabbed the form data after submission and reload<br />";
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
 
     $statement = $db->prepare("SELECT email FROM users WHERE email = :email");
     $statement->bindParam(':email', $email);
@@ -65,30 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die();
     }
 
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
-    echo "Tried to execute query to get all user emails<br />";
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
     $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
-
-    echo "result: ";
-    var_dump($result);
-    echo "<br />";
-
-    ///////////////////////
-    // DEBUGGING
-    //////////////////////
 
     // Send verification out to google before we continue
     if (array_key_exists('sex', $_POST)) {
@@ -101,18 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = file_get_contents($g_verification);
         // decode json response from google
         $response = json_decode($response);
-
-        ///////////////////////
-        // DEBUGGING
-        //////////////////////
-
-        echo "Response: ";
-        var_dump($response);
-        echo "<br />";
-
-        ///////////////////////
-        // DEBUGGING
-        //////////////////////
     
         if ($response->success == 1) {
             if ($result['email'] == $email) {
@@ -127,20 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($result['username'] == $uname) {
                     $errorMessage = "Sorry, that username is already taken :(";
                 } else {
-
-
-                    ///////////////////////
-                    // DEBUGGING
-                    //////////////////////
-
-                    echo "Did we successfully verify a new account?";
-                    echo "<br />";
-
-                    ///////////////////////
-                    // DEBUGGING
-                    //////////////////////
-
-
                     // Let's create a token for the user
                     $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0987654321!$()*';
                     $token = str_shuffle($token);
@@ -157,38 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     //$statement->bindParam(':isEmailConfirmed', 0);
                     $statement->bindParam(':token', $token);
                     $statement->execute();
-    
-
-                    ///////////////////////
-                    // DEBUGGING
-                    //////////////////////
-
-                    echo "Did we successfully enter them into the database??";
-                    echo "<br />";
-
-                    ///////////////////////
-                    // DEBUGGING
-                    //////////////////////
-
-
-                    // let's send an email to verify them before they have access
-                    $mail = new PHPMailer();
-                    $mail->setFrom('austinkincade995@gmail.com');
-                    $mail->addAddress($email, $uname);
-                    $mail->Subject('Please verify your email');
-                    $mail->isHTML(true);
-                    $mail->Body = "
-                        Please click on the link below to verify your email and get rating!<br /><br />
-
-                        <a href='https://morning-citadel-97793.herokuapp.com/RateMyLoo/confirmEmail.php?email=$email&token=$token'>Verify</a>
-                    ";
-
-                    if ($mail->send()) {
-                        $verify = 'Check your inbox to verify your email and finish registering!';
-                    } else {
-                        $verify = 'Sorry, I think a pipe got clogged... Try again? ;)';
-                        echo "$verify<br />";
-                    }
                 }
             }
         } else {
@@ -268,9 +156,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="row justify-content-md-center">
             <div class="col-lg-4">
                 <div class="card">
-                    <p><?php echo $verify;?>
-                    </p>
-
                     <article class="card-body">
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
                         <form NAME="signUpForm" METHOD="POST" ACTION="signup.php" id="sign_up_form">
