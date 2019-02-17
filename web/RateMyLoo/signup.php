@@ -59,21 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($result['username'] == $uname) {
                     $errorMessage = "Sorry, that username is already taken :(";
                 } else {
-                    // Let's create a token for the user
-                    $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0987654321!$()*';
-                    $token = str_shuffle($token);
-                    $token = substr($token, 0, 10);
-
                     // Let's hash the password so we can send the hash to the database
                     $phash = password_hash($pword, PASSWORD_DEFAULT);
-                    $statement = $db->prepare("INSERT INTO users (email,  username,  hash_ed,  is_male, isEmailConfirmed, token) 
-                                                         VALUES (:email, :username, :hash_ed, :is_male, 0,               :token)");
+                    $statement = $db->prepare("INSERT INTO users (email,  username,  hash_ed,  is_male) 
+                                                         VALUES (:email, :username, :hash_ed, :is_male");
                     $statement->bindParam(':email', $email);
                     $statement->bindParam(':username', $uname);
                     $statement->bindParam(':hash_ed', $phash);
                     $statement->bindParam(':is_male', $is_male);
-                    //$statement->bindParam(':isEmailConfirmed', 0);
-                    $statement->bindParam(':token', $token);
                     $statement->execute();
 
                     flush();
