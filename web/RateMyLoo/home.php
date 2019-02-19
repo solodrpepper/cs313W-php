@@ -65,8 +65,8 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
             ,       b.bathroom_id
             ,       u.username
             ,       r.comment
-            FROM    users u INNER JOIN ratings   r ON r.user_id = u.user_id
-                            INNER JOIN bathrooms b ON r.bathroom_id = b.bathroom_id
+            FROM    bathroom b INNER JOIN ratings r ON r.bathroom_id = b.bathroom_id
+                               LEFT JOIN users    u ON r.user_id = u.user_id
             WHERE   u.is_male = b.is_mens"
         );
     } else {
@@ -76,8 +76,8 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
             ,       b.floor_value
             ,       u.username
             ,       r.comment
-            FROM    users u INNER JOIN ratings   r ON r.user_id = u.user_id
-                            INNER JOIN bathrooms b ON r.bathroom_id = b.bathroom_id"
+            FROM    bathroom b INNER JOIN ratings r ON r.bathroom_id = b.bathroom_id
+                               LEFT JOIN users    u ON r.user_id = u.user_id"
         );
     }
 

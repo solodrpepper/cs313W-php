@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once 'db_connect.php';
     $db = get_db();
 
-    $uname            = $_POST['username'];
-    $email            = $_POST['email'];
-    $pword            = $_POST['hash_ed'];
-    $is_male          = $_POST['sex'];
+    $uname   = htmlspecialchars($_POST['username']);
+    $email   = htmlspecialchars($_POST['email']);
+    $pword   = htmlspecialchars($_POST['hash_ed']);
+    $is_male = htmlspecialchars($_POST['sex']);
 
     $statement = $db->prepare("SELECT email FROM users WHERE email = :email");
     $statement->bindParam(':email', $email);
