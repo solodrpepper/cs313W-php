@@ -67,7 +67,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
             ,       r.comment
             FROM    bathrooms b LEFT JOIN ratings r ON r.bathroom_id = b.bathroom_id
                                 LEFT JOIN users   u ON r.user_id = u.user_id
-            WHERE   u.is_male = b.is_mens"
+            WHERE   $is_male = b.is_mens"
         );
     } else {
         // If the user isn't logged in then show all bathrooms
