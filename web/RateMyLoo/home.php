@@ -9,7 +9,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 } else {
    $isLoggedIn = 1;
    $is_male = $_SESSION['is_male'];
-   echo "$is_male";
+   echo $is_male;
 }
 
 ?>
@@ -59,6 +59,9 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 
 <?php
     if ($isLoggedIn) {
+
+        var_dump($_SESSION);
+
         // If the user is logged in then show gender specific bathrooms
         $statement = $db->prepare(
             "SELECT b.building_name
