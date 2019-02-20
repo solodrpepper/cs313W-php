@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
+        $is_male = $result['is_male'];
+
         if ($result['email'] == $email) {
             // Verify the password
             if (password_verify($pword, $result['hash_ed'])) {
