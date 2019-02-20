@@ -9,7 +9,6 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 } else {
    $isLoggedIn = 1;
    $is_male = $_SESSION['is_male'];
-   echo $is_male;
 }
 
 ?>
@@ -73,7 +72,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
                                 LEFT JOIN users   u ON r.user_id = u.user_id
             WHERE   b.is_mens = :is_male"
         );
-        $statement->binParam(':is_male', $is_male);
+        $statement->bindParam(':is_male', $is_male);
     } else {
         // If the user isn't logged in then show all bathrooms
         $statement = $db->prepare(
