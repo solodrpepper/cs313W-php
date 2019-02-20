@@ -87,6 +87,9 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 $statement->execute();
 // Go through each result
 
+var_dump($_SESSION);
+
+
 // count how many iterations to determine when to start a new row
 $item_count = 0;
 
