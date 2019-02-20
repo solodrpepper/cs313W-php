@@ -66,7 +66,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
             ,       u.username
             ,       r.comment
             FROM    bathrooms b LEFT JOIN ratings r ON r.bathroom_id = b.bathroom_id
-                               LEFT JOIN users    u ON r.user_id = u.user_id
+                                LEFT JOIN users   u ON r.user_id = u.user_id
             WHERE   u.is_male = b.is_mens"
         );
     } else {
@@ -74,10 +74,11 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
         $statement = $db->prepare(
             "SELECT b.building_name
             ,       b.floor_value
+            ,       b.bathroom_id
             ,       u.username
             ,       r.comment
             FROM    bathrooms b LEFT JOIN ratings r ON r.bathroom_id = b.bathroom_id
-                               LEFT JOIN users    u ON r.user_id = u.user_id"
+                                LEFT JOIN users   u ON r.user_id = u.user_id"
         );
     }
 
