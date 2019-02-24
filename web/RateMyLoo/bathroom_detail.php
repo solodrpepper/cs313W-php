@@ -66,13 +66,12 @@ $statement->execute();
         <div class='card'>
             <!-- Picture here -->
             <?php
-            
 
-            echo $floor_value;
-            echo $building_name;
+            echo "<h1 style='align-text: center'>$building_name, $floor_value floor</h1>";
 
 
             // Comment section of the page
+            echo "<div class='card'>";
             echo "<ul class='comment-section'>";
 
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -90,7 +89,19 @@ $statement->execute();
                         <p>$comment</p>
                     </li>";
             }
+
+            echo "<li class='write-new'>
+                    <form action='#' method='post'>
+                        <textarea placeholder='Write your comment here' name='comment'></textarea>
+                        <div>
+                            <i class='fas fa-user-ninja'></i>
+                            <button type='submit'>Submit</button>
+                        </div>
+                    </form>
+                    </li>
+                </ul>";
         ?>
+        </div>
         </div>
     </div>
 
@@ -98,16 +109,8 @@ $statement->execute();
 
 
 
-    <li class="write-new">
-        <form action="#" method="post">
-            <textarea placeholder="Write your comment here" name="comment"></textarea>
-            <div>
-                <i class="fas fa-user-ninja"></i>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-    </li>
-    </ul>
+    
+
 
 </body>
 
