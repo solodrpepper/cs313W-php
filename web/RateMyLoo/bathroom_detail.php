@@ -71,71 +71,42 @@ $statement->execute();
             echo $floor_value;
             echo $building_name;
 
-            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $comment = $row['comment'];
-                $uname = $row['username'];
 
-                echo $comment;
-                echo "<br />-- ";
-                echo $uname;
+            // Comment section of the page
+            echo "<ul class='comment-section'>";
+
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $uname = $row['username'];
+                $comment = $row['comment'];
+                
+                echo "<li class='comment user-comment'>
+                        <div class='info'>
+                            <a href='#'>$uname</a>
+                            <span>4 hours ago</span>
+                        </div>
+                        <a class='avatar' href='#'>
+                            <i class='fas fa-user-ninja'></i>
+                        </a>
+                        <p>$comment</p>
+                    </li>";
             }
         ?>
         </div>
     </div>
 
-    <!-- Comment section of the page -->
-    <ul class="comment-section">
-        <li class="comment user-comment">
-            <div class="info">
-                <a href="#">Anie Silverston</a>
-                <span>4 hours ago</span>
+
+
+
+
+    <li class="write-new">
+        <form action="#" method="post">
+            <textarea placeholder="Write your comment here" name="comment"></textarea>
+            <div>
+                <i class="fas fa-user-ninja"></i>
+                <button type="submit">Submit</button>
             </div>
-            <a class="avatar" href="#">
-                <img src="images/avatar_user_1.jpg" width="35" alt="Profile Avatar" title="Anie Silverston" />
-            </a>
-            <p>Suspendisse gravida sem?</p>
-        </li>
-        <li class="comment author-comment">
-            <div class="info">
-                <a href="#">Jack Smith</a>
-                <span>3 hours ago</span>
-            </div>
-            <a class="avatar" href="#">
-                <img src="images/avatar_author.jpg" width="35" alt="Profile Avatar" title="Jack Smith" />
-            </a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida sem sit amet molestie
-                portitor.</p>
-        </li>
-        <li class="comment user-comment">
-            <div class="info">
-                <a href="#">Bradley Jones</a>
-                <span>1 hour ago</span>
-            </div>
-            <a class="avatar" href="#">
-                <img src="images/avatar_user_2.jpg" width="35" alt="Profile Avatar" title="Bradley Jones" />
-            </a>
-            <p>Suspendisse gravida sem sit amet molestie portitor?</p>
-        </li>
-        <li class="comment author-comment">
-            <div class="info">
-                <a href="#">Jack Smith</a>
-                <span>1 hour ago</span>
-            </div>
-            <a class="avatar" href="#">
-                <img src="images/avatar_author.jpg" width="35" alt="Profile Avatar" title="Jack Smith" />
-            </a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisee gravida sem sit amet molestie
-                porttitor.</p>
-        </li>
-        <li class="write-new">
-            <form action="#" method="post">
-                <textarea placeholder="Write your comment here" name="comment"></textarea>
-                <div>
-                    <img src="images/avatar_user_2.jpg" width="35" alt="Profile of Bradley Jones" title="Bradley Jones" />
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </li>
+        </form>
+    </li>
     </ul>
 
 </body>
