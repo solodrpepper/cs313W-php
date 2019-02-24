@@ -64,8 +64,8 @@ $statement->execute();
         <?php
             
 
-            $floor_value = $row['floor_value'];
-            $building_name = $row['building_name'];
+            $floor_value = $statement['floor_value'];
+            $building_name = $statement['building_name'];
 
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $comment = $row['comment'];
