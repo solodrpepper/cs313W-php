@@ -15,12 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $is_male = $_POST['is_male'];
 
     if ($db) {
-        $statement = $db->prepare('SELECT email, username, hash_ed, is_male FROM users WHERE email = :email');
+        $statement = $db->prepare('SELECT email, username, hash_ed, is_male, user_id FROM users WHERE email = :email');
         $statement->bindParam(':email', $email);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         $is_male = $result['is_male'];
+        $user_id = $result['user_id'];
 
         if ($result['email'] == $email) {
             // Verify the password
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['login'] = "1";
                 $_SESSION['uname'] = "$uname";
                 $_SESSION['is_male'] = "$is_male";
+                $_SESSION['user_id'] = "$user_id";
                 // if successfull redirect to the home page
                 flush();
                 header("Location: home.php");

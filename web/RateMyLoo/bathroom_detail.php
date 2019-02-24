@@ -1,6 +1,10 @@
 <?php
 require_once 'db_connect.php';
 $db = get_db();
+
+session_start();
+$user_id = $_SESSION['user_id'];
+
 // Grab the bathroom id that they clicked on
 $bathroom_id = htmlspecialchars($_GET['bathroom_id']);
 
@@ -20,7 +24,8 @@ $statement = $db->prepare(
     ,       r.traffic
     ,       r.echo_value
     FROM    users u LEFT JOIN ratings r ON r.user_id = u.user_id       
-    WHERE   r.bathroom_id = :bid"
+    WHERE   r.bathroom_id = :bid
+    ORDER BY r.rating_id ASC"
 );
 
 $statement->bindParam(':bid', $bathroom_id);
@@ -56,7 +61,21 @@ $statement->execute();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <title>Rate My Loo - <?php echo $building_name . ", " . $floor_value . " Floor";?></title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- To Insert New Comments -->
+    <script>
+        $(document).ready(function() {
+            $("#commentSubmit").click(function() {
+                $.post("insert_comment.php", $( "#commentForm" ).serialize());
+            });
+        });
+    </script>
+
+
+    <title>Rate My Loo - <?php echo $building_name . ", " . $floor_value . " Floor";?>
+    </title>
 </head>
 
 <body>
@@ -81,7 +100,7 @@ $statement->execute();
                 echo "<li class='comment user-comment'>
                         <div class='info'>
                             <a href='#'>$uname</a>
-                            <span>4 hours ago</span>
+                            <span></span>
                         </div>
                         <a class='avatar' href='#'>
                             <i class='fas fa-user-ninja'></i>
@@ -91,25 +110,75 @@ $statement->execute();
             }
 
             echo "<li class='write-new'>
-                    <form action='#' method='post'>
+                    <form id='commentForm' action='' method='post'>
+                        <div class='wrap'>
+                            <label class='statement'>What's your overall score of this bathroom?</label>
+                            <ul class='likert'>
+                                <li>
+                                    <input type='radio' name='likert' value='5'>
+                                    <label>Awesome!</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='4'>
+                                    <label>Pretty Great</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='3'>
+                                    <label>Eh..</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='2'>
+                                    <label>If I Can't Hold It</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='1'>
+                                    <label>Beyond Awful</label>
+                                </li>
+                            </ul>
+                            <label class='statement'>How Clean is it?</label>
+                            <ul class='likert'>
+                                <li>
+                                    <input type='radio' name='likert' value='5'>
+                                    <label>I Can See Sparkles!</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='4'>
+                                    <label>Real Clean</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='3'>
+                                    <label>It's Alright</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='2'>
+                                    <label>Gross</label>
+                                </li>
+                                <li>
+                                    <input type='radio' name='likert' value='1'>
+                                    <label>Who Died in Here?</label>
+                                </li>
+                            </ul>
+                    </div>
                         <textarea placeholder='Write your comment here' name='comment'></textarea>
                         <div>
+                            <input type='text' name='user_id'     value='$user_id'     style='visibility: hidden'/>
+                            <input type='text' name='bathroom_id' value='$bathroom_id' style='visibility: hidden'/>
                             <i class='fas fa-user-ninja'></i>
-                            <button type='submit'>Submit</button>
+                            <button id='commentSubmit' type='button'>Submit</button>
                         </div>
                     </form>
                     </li>
                 </ul>";
         ?>
         </div>
-        </div>
+    </div>
     </div>
 
 
 
 
 
-    
+
 
 
 </body>
