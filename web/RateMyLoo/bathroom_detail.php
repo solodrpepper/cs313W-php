@@ -15,9 +15,12 @@ $floor_value   = $result['floor_value'];
 $statement = $db->prepare(
     "SELECT u.username
     ,       r.comment
-    FROM    bathrooms b
-    ,       users u LEFT JOIN ratings r ON r.user_id = u.user_id       
-    WHERE   b.bathroom_id = :bid"
+    ,       r.overall_score
+    ,       r.cleanliness
+    ,       r.traffic
+    ,       r.echo_value
+    FROM    users u LEFT JOIN ratings r ON r.user_id = u.user_id       
+    WHERE   r.bathroom_id = :bid"
 );
 
 $statement->bindParam(':bid', $bathroom_id);

@@ -77,7 +77,8 @@ INSERT INTO ratings (bathroom_id, user_id, overall_score, cleanliness, traffic, 
 , (11, 43, 3, 4, 2, 2, 'This bathroom is nice because you get it all to yourself!! :D');
 
 
-
+INSERT INTO ratings (bathroom_id, user_id, overall_score, cleanliness, traffic, echo_value, comment) VALUES
+  (1,   1, 4, 5, 3, 2, 'It''s pretty good, just miss when the STC wasn''t so busy all the time...');
 
 
 
