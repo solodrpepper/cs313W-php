@@ -115,46 +115,46 @@ $statement->execute();
                             <label class='statement'>What's your overall score of this bathroom?</label>
                             <ul class='likert'>
                                 <li>
-                                    <input type='radio' name='likert' value='5'>
+                                    <input type='radio' name='overall_score' value='5'>
                                     <label>Awesome!</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='4'>
+                                    <input type='radio' name='overall_score' value='4'>
                                     <label>Pretty Great</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='3'>
+                                    <input type='radio' name='overall_score' value='3'>
                                     <label>Eh..</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='2'>
+                                    <input type='radio' name='overall_score' value='2'>
                                     <label>If I Can't Hold It</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='1'>
+                                    <input type='radio' name='overall_score' value='1'>
                                     <label>Beyond Awful</label>
                                 </li>
                             </ul>
                             <label class='statement'>How Clean is it?</label>
                             <ul class='likert'>
                                 <li>
-                                    <input type='radio' name='likert' value='5'>
+                                    <input type='radio' name='cleanliness' value='5'>
                                     <label>I Can See Sparkles!</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='4'>
+                                    <input type='radio' name='cleanliness' value='4'>
                                     <label>Real Clean</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='3'>
+                                    <input type='radio' name='cleanliness' value='3'>
                                     <label>It's Alright</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='2'>
+                                    <input type='radio' name='cleanliness' value='2'>
                                     <label>Gross</label>
                                 </li>
                                 <li>
-                                    <input type='radio' name='likert' value='1'>
+                                    <input type='radio' name='cleanliness' value='1'>
                                     <label>Who Died in Here?</label>
                                 </li>
                             </ul>
