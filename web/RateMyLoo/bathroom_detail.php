@@ -20,19 +20,6 @@ $statement = $db->prepare(
     WHERE   b.bathroom_id = :bid"
 );
 
-
-$statement = $db->prepare(
-    "SELECT b.building_name
-    ,       b.floor_value
-    ,       b.bathroom_id
-    ,       u.username
-    ,       r.comment
-    FROM    bathrooms b LEFT JOIN ratings r ON r.bathroom_id = b.bathroom_id
-                        LEFT JOIN users   u ON r.user_id = u.user_id"
-);
-
-
-
 $statement->bindParam(':bid', $bathroom_id);
 $statement->execute();
 
