@@ -16,7 +16,7 @@ $statement = $db->prepare(
     "SELECT u.username
     ,       r.comment
     FROM    users u
-    ,       bathrooms b  INNER JOIN ratings r ON r.user_id = u.user_id       
+    ,       bathrooms b LEFT JOIN ratings r ON r.user_id = u.user_id       
     WHERE   b.bathroom_id = :bid"
 );
 
@@ -64,8 +64,8 @@ $statement->execute();
         <?php
             
 
-            $floor_value = $statement['floor_value'];
-            $building_name = $statement['building_name'];
+            echo $floor_value;
+            echo $building_name;
 
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $comment = $row['comment'];
