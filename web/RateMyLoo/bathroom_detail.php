@@ -15,7 +15,7 @@ $floor_value   = $result['floor_value'];
 $statement = $db->prepare(
     "SELECT u.username
     ,       r.comment
-    FROM    user u
+    FROM    users u
     ,       bathrooms b  INNER JOIN ratings r ON r.user_id = u.user_id       
     WHERE   b.bathroom_id = :bid"
 );
