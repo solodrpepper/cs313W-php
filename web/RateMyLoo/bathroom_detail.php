@@ -15,10 +15,23 @@ $floor_value   = $result['floor_value'];
 $statement = $db->prepare(
     "SELECT u.username
     ,       r.comment
-    FROM    users u
-    ,       bathrooms b LEFT JOIN ratings r ON r.user_id = u.user_id       
+    FROM    bathrooms b
+    ,       users u LEFT JOIN ratings r ON r.user_id = u.user_id       
     WHERE   b.bathroom_id = :bid"
 );
+
+
+$statement = $db->prepare(
+    "SELECT b.building_name
+    ,       b.floor_value
+    ,       b.bathroom_id
+    ,       u.username
+    ,       r.comment
+    FROM    bathrooms b LEFT JOIN ratings r ON r.bathroom_id = b.bathroom_id
+                        LEFT JOIN users   u ON r.user_id = u.user_id"
+);
+
+
 
 $statement->bindParam(':bid', $bathroom_id);
 $statement->execute();
