@@ -70,6 +70,11 @@ $statement->execute();
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $comment = $row['comment'];
                 $uname = $row['username'];
+
+                echo $comment;
+                echo "<br />-- ";
+                echo $uname;
+
             }
         ?>
 
