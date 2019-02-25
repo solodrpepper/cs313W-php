@@ -9,6 +9,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 } else {
    $isLoggedIn = 1;
    $is_male = $_SESSION['is_male'];
+   echo $is_male;
 }
 
 ?>
