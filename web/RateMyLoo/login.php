@@ -9,10 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once 'db_connect.php';
     $db = get_db();
 
-    $uname   = $_POST['username'];
-    $email   = $_POST['email'];
-    $pword   = $_POST['hash_ed'];
-    $is_male = $_POST['is_male'];
 
     if ($db) {
         $statement = $db->prepare('SELECT email, username, hash_ed, is_male, user_id FROM users WHERE email = :email');
@@ -20,6 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
+        $uname   = $_POST['username'];
+        $email   = $_POST['email'];
+        $pword   = $_POST['hash_ed'];
         $is_male = $result['is_male'];
         $user_id = $result['user_id'];
 
