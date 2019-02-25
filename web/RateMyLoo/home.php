@@ -67,7 +67,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
             ,       r.comment
             FROM    bathrooms b LEFT JOIN ratings r ON r.bathroom_id = b.bathroom_id
                                 LEFT JOIN users   u ON r.user_id = u.user_id
-            WHERE   b.is_mens = :is_male"
+            WHERE   b.is_mens = (SELECT is_male FROM users WHERE is_male = :is_male)"
         );
         $statement->bindParam(':is_male', $is_male);
     } else {
