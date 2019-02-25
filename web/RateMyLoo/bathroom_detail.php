@@ -3,7 +3,15 @@ require_once 'db_connect.php';
 $db = get_db();
 
 session_start();
-$user_id = $_SESSION['user_id'];
+
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+    $isLoggedIn = 0;
+ } else {
+    $isLoggedIn = 1;
+    $uname = $_SESSION['uname'];
+    $user_id = $_SESSION['user_id'];
+ }
+
 
 // Grab the bathroom id that they clicked on
 $bathroom_id = htmlspecialchars($_GET['bathroom_id']);
@@ -71,6 +79,30 @@ $statement->execute();
                 $.post("insert_comment.php", $( "#commentForm" ).serialize());
             });
         });
+
+
+    //     $(document).ready(function(){
+    //     // Set form variable
+    //     var form = $('#commentSubmit');
+        
+    //     // Hijack form submit
+    //     form.submit(function(event){
+    //       // Set username variable
+    //       var comment = $('#username').val(); 
+          
+    //       // Check if username value set
+    //       if ( $.trim(username) != '' ) {
+    //         // Process AJAX request
+    //         $.post('process.php', {name: username}, function(data){
+    //           // Append data into #results div
+    //           $('#results').html(data);
+    //         });
+    //       }
+          
+    //       // Prevent default form action
+    //       event.preventDefault();
+    //     });
+    //   });
     </script>
 
 
@@ -164,7 +196,7 @@ $statement->execute();
                             <input type='text' name='user_id'     value='$user_id'     style='visibility: hidden'/>
                             <input type='text' name='bathroom_id' value='$bathroom_id' style='visibility: hidden'/>
                             <i class='fas fa-user-ninja'></i>
-                            <button id='commentSubmit' type='button'>Submit</button>
+                            <button id='commentSubmit' type='button'>Add Your Rating</button>
                         </div>
                     </form>
                     </li>
